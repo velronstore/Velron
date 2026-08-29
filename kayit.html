@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Kaydol - VELRON</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:#000;
+    color:#fff;
+    font-family:Arial,sans-serif;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.back-button{
+    position:fixed;
+    top:15px;
+    left:15px;
+
+    width:35px;
+    height:35px;
+
+    background:none;
+    border:none;
+
+    color:#fff;
+    font-size:28px;
+
+    cursor:pointer;
+}
+
+.container{
+    width:100%;
+    max-width:390px;
+    padding:25px;
+}
+
+.logo{
+    text-align:center;
+
+    font-family:Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:24px;
+    font-weight:bold;
+
+    letter-spacing:7px;
+
+    margin-bottom:45px;
+}
+
+.title{
+    font-size:22px;
+    font-weight:600;
+
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#777;
+    font-size:12px;
+
+    margin-bottom:30px;
+}
+
+.input-group{
+    margin-bottom:16px;
+}
+
+.input-group label{
+    display:block;
+
+    color:#aaa;
+    font-size:11px;
+
+    margin-bottom:7px;
+}
+
+.input-group input{
+    width:100%;
+    height:48px;
+
+    background:#080808;
+
+    border:1px solid #333;
+
+    outline:none;
+
+    color:#fff;
+
+    padding:0 13px;
+
+    font-size:13px;
+}
+
+.input-group input:focus{
+    border-color:#777;
+}
+
+.register-button{
+    width:100%;
+    height:50px;
+
+    background:#fff;
+    color:#000;
+
+    border:none;
+
+    font-size:12px;
+    font-weight:bold;
+
+    letter-spacing:1.5px;
+
+    cursor:pointer;
+}
+
+.register-button:active{
+    opacity:.7;
+}
+
+.register-button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.divider{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:25px 0;
+}
+
+.divider-line{
+    flex:1;
+
+    height:1px;
+
+    background:#292929;
+}
+
+.divider span{
+    color:#666;
+    font-size:10px;
+}
+
+.google-button{
+    width:100%;
+    height:50px;
+
+    background:#080808;
+    color:#fff;
+
+    border:1px solid #333;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    font-size:12px;
+
+    cursor:pointer;
+}
+
+.google-button:active{
+    opacity:.7;
+}
+
+.google-button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.google-icon{
+    width:18px;
+    height:18px;
+
+    border-radius:50%;
+
+    background:#fff;
+    color:#000;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:11px;
+    font-weight:bold;
+}
+
+.login{
+    text-align:center;
+
+    margin-top:30px;
+
+    color:#777;
+    font-size:11px;
+}
+
+.login a{
+    color:#fff;
+
+    text-decoration:none;
+
+    margin-left:5px;
+}
+
+.message{
+    display:none;
+
+    text-align:center;
+
+    color:#aaa;
+
+    font-size:11px;
+
+    margin-top:15px;
+
+    line-height:1.5;
+
+    word-break:break-word;
+}
+
+@media(max-width:500px){
+
+    .container{
+        padding:22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<button
+    class="back-button"
+    type="button"
+    onclick="history.back()"
+>
+    ‹
+</button>
+
+
+<main class="container">
+
+
+    <div class="logo">
+        VELRON
+    </div>
+
+
+    <h1 class="title">
+        Hesap Oluştur
+    </h1>
+
+
+    <p class="subtitle">
+        VELRON hesabını oluştur.
+    </p>
+
+
+    <form
+        id="registerForm"
+        novalidate
+    >
+
+
+        <div class="input-group">
+
+            <label>
+                AD SOYAD
+            </label>
+
+            <input
+                id="name"
+                type="text"
+                placeholder="Adın ve soyadın"
+                autocomplete="name"
+                required
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                E-POSTA
+            </label>
+
+            <input
+                id="email"
+                type="email"
+                placeholder="E-posta adresin"
+                autocomplete="email"
+                required
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                ŞİFRE
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Şifren"
+                autocomplete="new-password"
+                minlength="6"
+                required
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                ŞİFRE TEKRAR
+            </label>
+
+            <input
+                id="passwordConfirm"
+                type="password"
+                placeholder="Şifreni tekrar yaz"
+                autocomplete="new-password"
+                minlength="6"
+                required
+            >
+
+        </div>
+
+
+        <button
+            id="registerButton"
+            class="register-button"
+            type="submit"
+        >
+            HESAP OLUŞTUR
+        </button>
+
+
+    </form>
+
+
+    <div class="divider">
+
+        <div class="divider-line"></div>
+
+        <span>
+            VEYA
+        </span>
+
+        <div class="divider-line"></div>
+
+    </div>
+
+
+    <button
+        class="google-button"
+        id="googleButton"
+        type="button"
+    >
+
+        <span class="google-icon">
+            G
+        </span>
+
+        Google ile devam et
+
+    </button>
+
+
+    <div
+        class="message"
+        id="message"
+    ></div>
+
+
+    <div class="login">
+
+        Zaten hesabın var mı?
+
+        <a href="giris.html">
+            Giriş Yap
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<script type="module">
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile,
+    GoogleAuthProvider,
+    signInWithPopup
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyD8osmrzNWj32T-1kNx-jmHlWcAm5_7xeg",
+
+    authDomain:
+        "velron-831db.firebaseapp.com",
+
+    projectId:
+        "velron-831db",
+
+    storageBucket:
+        "velron-831db.firebasestorage.app",
+
+    messagingSenderId:
+        "622435814773",
+
+    appId:
+        "1:622435814773:web:bd94aff51e78ba2a7c573c",
+
+    measurementId:
+        "G-74XHVN6V22"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const googleProvider =
+    new GoogleAuthProvider();
+
+
+/* =========================
+   ELEMENTLER
+========================= */
+
+const registerForm =
+    document.getElementById(
+        "registerForm"
+    );
+
+
+const nameInput =
+    document.getElementById(
+        "name"
+    );
+
+
+const emailInput =
+    document.getElementById(
+        "email"
+    );
+
+
+const passwordInput =
+    document.getElementById(
+        "password"
+    );
+
+
+const passwordConfirmInput =
+    document.getElementById(
+        "passwordConfirm"
+    );
+
+
+const registerButton =
+    document.getElementById(
+        "registerButton"
+    );
+
+
+const googleButton =
+    document.getElementById(
+        "googleButton"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+/* =========================
+   MESAJ
+========================= */
+
+function showMessage(text){
+
+    message.textContent =
+        text;
+
+    message.style.display =
+        "block";
+
+}
+
+
+function hideMessage(){
+
+    message.textContent =
+        "";
+
+    message.style.display =
+        "none";
+
+}
+
+
+/* =========================
+   NORMAL KAYIT
+========================= */
+
+registerForm.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+        hideMessage();
+
+
+        const name =
+            nameInput.value.trim();
+
+
+        const email =
+            emailInput.value.trim();
+
+
+        const password =
+            passwordInput.value;
+
+
+        const passwordConfirm =
+            passwordConfirmInput.value;
+
+
+        /* BOŞ ALAN */
+
+        if(
+            name === "" ||
+            email === "" ||
+            password === "" ||
+            passwordConfirm === ""
+        ){
+
+            showMessage(
+                "Lütfen tüm alanları doldur."
+            );
+
+            return;
+
+        }
+
+
+        /* E-POSTA */
+
+        if(
+            !emailInput.checkValidity()
+        ){
+
+            showMessage(
+                "Geçerli bir e-posta adresi yaz."
+            );
+
+            return;
+
+        }
+
+
+        /* ŞİFRE */
+
+        if(
+            password.length < 6
+        ){
+
+            showMessage(
+                "Şifre en az 6 karakter olmalı."
+            );
+
+            return;
+
+        }
+
+
+        /* ŞİFRE TEKRAR */
+
+        if(
+            password !== passwordConfirm
+        ){
+
+            showMessage(
+                "Şifreler aynı değil."
+            );
+
+            return;
+
+        }
+
+
+        registerButton.disabled =
+            true;
+
+        registerButton.textContent =
+            "HESAP OLUŞTURULUYOR...";
+
+
+        try{
+
+            /* HESAP OLUŞTUR */
+
+            const result =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            /* İSİM KAYDET */
+
+            await updateProfile(
+                result.user,
+                {
+                    displayName:name
+                }
+            );
+
+
+            showMessage(
+                "Hesabın oluşturuldu."
+            );
+
+
+            setTimeout(
+                function(){
+
+                    window.location.href =
+                        "index.html";
+
+                },
+                700
+            );
+
+
+        }catch(error){
+
+            console.error(
+                "KAYIT HATASI:",
+                error
+            );
+
+
+            /*
+                GERÇEK HATA KODUNU
+                EKRANDA GÖSTERİYORUZ
+            */
+
+            if(
+                error.code ===
+                "auth/email-already-in-use"
+            ){
+
+                showMessage(
+                    "Bu e-posta zaten kayıtlı."
+                );
+
+            }else if(
+                error.code ===
+                "auth/invalid-email"
+            ){
+
+                showMessage(
+                    "Geçerli bir e-posta adresi yaz."
+                );
+
+            }else if(
+                error.code ===
+                "auth/weak-password"
+            ){
+
+                showMessage(
+                    "Şifre çok zayıf."
+                );
+
+            }else if(
+                error.code ===
+                "auth/operation-not-allowed"
+            ){
+
+                showMessage(
+                    "E-posta ile kayıt yöntemi etkin değil."
+                );
+
+            }else if(
+                error.code ===
+                "auth/network-request-failed"
+            ){
+
+                showMessage(
+                    "İnternet bağlantısı veya bağlantı isteği başarısız."
+                );
+
+            }else{
+
+                showMessage(
+                    "Hata: " +
+                    (
+                        error.code ||
+                        error.message ||
+                        "Bilinmeyen hata"
+                    )
+                );
+
+            }
+
+
+            registerButton.disabled =
+                false;
+
+            registerButton.textContent =
+                "HESAP OLUŞTUR";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   GOOGLE
+========================= */
+
+googleButton.addEventListener(
+    "click",
+    async function(){
+
+        hideMessage();
+
+
+        googleButton.disabled =
+            true;
+
+
+        try{
+
+            await signInWithPopup(
+                auth,
+                googleProvider
+            );
+
+
+            showMessage(
+                "Google ile giriş başarılı."
+            );
+
+
+            setTimeout(
+                function(){
+
+                    window.location.href =
+                        "index.html";
+
+                },
+                700
+            );
+
+
+        }catch(error){
+
+            console.error(
+                "GOOGLE HATASI:",
+                error
+            );
+
+
+            if(
+                error.code ===
+                "auth/popup-closed-by-user"
+            ){
+
+                googleButton.disabled =
+                    false;
+
+                return;
+
+            }
+
+
+            if(
+                error.code ===
+                "auth/popup-blocked"
+            ){
+
+                showMessage(
+                    "Google penceresi engellendi."
+                );
+
+            }else{
+
+                showMessage(
+                    "Google hatası: " +
+                    (
+                        error.code ||
+                        "Bilinmeyen hata"
+                    )
+                );
+
+            }
+
+
+            googleButton.disabled =
+                false;
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

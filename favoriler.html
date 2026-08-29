@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Favoriler - VELRON</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+
+/* HEADER */
+
+.header{
+
+    width:100%;
+    height:52px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-bottom:1px solid #222;
+
+    position:relative;
+
+}
+
+.back-button{
+
+    position:absolute;
+
+    left:15px;
+
+    width:30px;
+    height:30px;
+
+    background:none;
+    border:none;
+
+    color:#fff;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+}
+
+.logo{
+
+    font-family:Georgia,"Times New Roman",serif;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    letter-spacing:5px;
+
+}
+
+
+/* BAŞLIK */
+
+.title{
+
+    padding:25px 15px 20px;
+
+}
+
+.title h1{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+
+/* FAVORİLER */
+
+.favorites{
+
+    padding:0 15px 40px;
+
+}
+
+.favorite-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px 10px;
+
+}
+
+
+/* ÜRÜN */
+
+.favorite-product{
+
+    cursor:pointer;
+
+}
+
+.favorite-product img{
+
+    width:100%;
+
+    display:block;
+
+}
+
+.favorite-product h3{
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:500;
+
+    line-height:1.4;
+
+    margin-top:8px;
+
+}
+
+.favorite-product p{
+
+    color:#ddd;
+
+    font-size:12px;
+
+    margin-top:5px;
+
+}
+
+
+/* BOŞ FAVORİ */
+
+.empty{
+
+    display:none;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:13px;
+
+    padding:60px 20px;
+
+}
+
+
+/* MOBİL */
+
+@media(max-width:700px){
+
+    .favorite-grid{
+
+        gap:22px 10px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <button
+        class="back-button"
+        onclick="history.back()"
+    >
+        ‹
+    </button>
+
+    <div class="logo">
+        VELRON
+    </div>
+
+</header>
+
+
+<section class="title">
+
+    <h1>
+        FAVORİLER
+    </h1>
+
+</section>
+
+
+<section class="favorites">
+
+    <div
+        class="favorite-grid"
+        id="favoriteGrid"
+    ></div>
+
+
+    <div
+        class="empty"
+        id="emptyFavorites"
+    >
+        Henüz favori ürünün yok.
+    </div>
+
+</section>
+
+
+<script>
+
+
+/* ========================================
+   FAVORİLER
+======================================== */
+
+const FAVORITES_KEY =
+    "velron_favorites";
+
+
+const products = [
+
+    {
+        name:"Tiger Tasarımlı Siyah Tişört",
+        price:499,
+        image:"tiger.png",
+        page:"urun-detay.html"
+    },
+
+    {
+        name:"Aslan Tasarımlı Siyah Tişört",
+        price:499,
+        image:"aslan.png",
+        page:"urun-aslan.html"
+    },
+
+    {
+        name:"Dark Devil Tasarımlı Siyah Tişört",
+        price:499,
+        image:"darkdevil.png",
+        page:"urun-darkdevil.html"
+    },
+
+    {
+        name:"Kurukafa Tasarımlı Siyah Tişört",
+        price:499,
+        image:"kurukafa.png",
+        page:"urun-kurukafa.html"
+    },
+
+    {
+        name:"Monza Tasarımlı Beyaz Tişört",
+        price:499,
+        image:"monza.png",
+        page:"urun-monza.html"
+    },
+
+    {
+        name:"Voltage Tasarımlı Beyaz Tişört",
+        price:499,
+        image:"voltage.png",
+        page:"urun-voltage.html"
+    },
+
+    {
+        name:"Porsche Tasarımlı Beyaz Tişört",
+        price:499,
+        image:"porsche.png",
+        page:"urun-porsche.html"
+    },
+
+    {
+        name:"Velron Tasarımlı Beyaz Tişört",
+        price:499,
+        image:"velron.png",
+        page:"urun-velron.html"
+    }
+
+];
+
+
+/* FAVORİLERİ AL */
+
+function getFavorites(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                FAVORITES_KEY
+            )
+        ) || [];
+
+    }catch(error){
+
+        return [];
+
+    }
+
+}
+
+
+/* GÖSTER */
+
+function renderFavorites(){
+
+    const favoriteGrid =
+        document.getElementById(
+            "favoriteGrid"
+        );
+
+    const emptyFavorites =
+        document.getElementById(
+            "emptyFavorites"
+        );
+
+
+    const favorites =
+        getFavorites();
+
+
+    favoriteGrid.innerHTML="";
+
+
+    if(favorites.length===0){
+
+        emptyFavorites.style.display=
+            "block";
+
+        return;
+
+    }
+
+
+    emptyFavorites.style.display=
+        "none";
+
+
+    favorites.forEach(function(name){
+
+        const product =
+            products.find(function(item){
+
+                return item.name===name;
+
+            });
+
+
+        if(!product){
+            return;
+        }
+
+
+        const item =
+            document.createElement("div");
+
+
+        item.className=
+            "favorite-product";
+
+
+        item.onclick=function(){
+
+            location.href=
+                product.page;
+
+        };
+
+
+        item.innerHTML=`
+
+            <img
+                src="${product.image}"
+                alt="${product.name}"
+            >
+
+            <h3>
+                ${product.name}
+            </h3>
+
+            <p>
+                ${product.price} TL
+            </p>
+
+        `;
+
+
+        favoriteGrid.appendChild(item);
+
+    });
+
+}
+
+
+/* BAŞLAT */
+
+renderFavorites();
+
+
+/* SAYFA GERİ GELİNCE GÜNCELLE */
+
+window.addEventListener(
+    "pageshow",
+    renderFavorites
+);
+
+</script>
+
+
+</body>
+
+</html>
