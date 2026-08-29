@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Siparişlerim - VELRON</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:#000;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:100%;
+    max-width:650px;
+    margin:auto;
+    padding:20px 15px 50px;
+}
+
+.back{
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.logo{
+    text-align:center;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:21px;
+    font-weight:bold;
+    letter-spacing:6px;
+    margin-bottom:35px;
+}
+
+.title{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#777;
+    font-size:11px;
+    margin-bottom:25px;
+}
+
+.orders{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.order{
+    background:#080808;
+    border:1px solid #292929;
+    padding:16px;
+}
+
+.order-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    border-bottom:1px solid #292929;
+    padding-bottom:12px;
+    margin-bottom:13px;
+}
+
+.order-number{
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:.5px;
+}
+
+.order-date{
+    color:#777;
+    font-size:9px;
+    margin-top:5px;
+}
+
+.status{
+    font-size:9px;
+    padding:5px 8px;
+    border:1px solid #444;
+    color:#aaa;
+    white-space:nowrap;
+}
+
+.products{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.product{
+    display:flex;
+    gap:10px;
+    padding-bottom:10px;
+    border-bottom:1px solid #1d1d1d;
+}
+
+.product:last-child{
+    border-bottom:none;
+    padding-bottom:0;
+}
+
+.product-image{
+    width:55px;
+    height:68px;
+    object-fit:contain;
+    background:#111;
+    flex-shrink:0;
+}
+
+.product-info{
+    flex:1;
+    min-width:0;
+}
+
+.product-name{
+    font-size:11px;
+    line-height:1.4;
+}
+
+.product-details{
+    color:#777;
+    font-size:9px;
+    line-height:1.7;
+    margin-top:5px;
+}
+
+.product-price{
+    color:#ddd;
+    font-size:10px;
+    margin-top:5px;
+}
+
+.order-bottom{
+    border-top:1px solid #292929;
+    margin-top:14px;
+    padding-top:12px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:10px;
+    margin-bottom:7px;
+}
+
+.info-row span:first-child{
+    color:#777;
+}
+
+.total-row{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid #292929;
+    padding-top:10px;
+    margin-top:8px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.address{
+    margin-top:12px;
+    padding-top:10px;
+    border-top:1px solid #1d1d1d;
+    color:#777;
+    font-size:9px;
+    line-height:1.6;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    padding:45px 15px;
+    border:1px solid #222;
+    background:#080808;
+}
+
+.loading{
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    padding:40px 0;
+}
+
+.error{
+    text-align:center;
+    color:#ff5555;
+    font-size:11px;
+    line-height:1.6;
+    padding:30px 15px;
+}
+
+.login-button{
+    display:block;
+    width:100%;
+    height:45px;
+    line-height:45px;
+    text-align:center;
+    background:#fff;
+    color:#000;
+    text-decoration:none;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-top:15px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<main class="container">
+
+
+<a href="index.html" class="back">
+    ‹
+</a>
+
+
+<div class="logo">
+    VELRON
+</div>
+
+
+<h1 class="title">
+    Siparişlerim
+</h1>
+
+
+<p class="subtitle">
+    Verdiğin siparişleri buradan takip edebilirsin.
+</p>
+
+
+<div
+class="orders"
+id="orders"
+>
+
+    <div class="loading">
+        Siparişlerin yükleniyor...
+    </div>
+
+</div>
+
+
+</main>
+
+
+<script type="module">
+
+
+/* =====================================
+   FIREBASE
+===================================== */
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyD8osmrzNWj32T-1kNx-jmHlWcAm5_7xeg",
+
+    authDomain:
+        "velron-831db.firebaseapp.com",
+
+    projectId:
+        "velron-831db",
+
+    storageBucket:
+        "velron-831db.firebasestorage.app",
+
+    messagingSenderId:
+        "622435814773",
+
+    appId:
+        "1:622435814773:web:bd94aff51e78ba2a7c573c",
+
+    measurementId:
+        "G-74XHVN6V22"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================
+   ELEMENTLER
+===================================== */
+
+const ordersElement =
+    document.getElementById(
+        "orders"
+    );
+
+
+/* =====================================
+   SİPARİŞLERİ GETİR
+===================================== */
+
+async function loadOrders(user){
+
+    ordersElement.innerHTML = `
+
+        <div class="loading">
+            Siparişlerin yükleniyor...
+        </div>
+
+    `;
+
+
+    try{
+
+        const ordersQuery =
+            query(
+
+                collection(
+                    db,
+                    "siparisler"
+                ),
+
+                where(
+                    "kullaniciId",
+                    "==",
+                    user.uid
+                )
+
+            );
+
+
+        const snapshot =
+            await getDocs(
+                ordersQuery
+            );
+
+
+        const orders = [];
+
+
+        snapshot.forEach(
+            function(doc){
+
+                orders.push({
+
+                    id:
+                        doc.id,
+
+                    data:
+                        doc.data()
+
+                });
+
+            }
+        );
+
+
+        /* =====================================
+           YENİ SİPARİŞLER ÜSTTE
+        ===================================== */
+
+        orders.sort(
+            function(a,b){
+
+                const dateA =
+                    new Date(
+                        a.data.tarih || 0
+                    ).getTime();
+
+
+                const dateB =
+                    new Date(
+                        b.data.tarih || 0
+                    ).getTime();
+
+
+                return dateB - dateA;
+
+            }
+        );
+
+
+        if(orders.length === 0){
+
+            ordersElement.innerHTML = `
+
+                <div class="empty">
+
+                    Henüz bir siparişin bulunmuyor.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        ordersElement.innerHTML = "";
+
+
+        orders.forEach(
+            function(order){
+
+                renderOrder(
+                    order.data
+                );
+
+            }
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Siparişler alınamadı:",
+            error
+        );
+
+
+        ordersElement.innerHTML = `
+
+            <div class="error">
+
+                Siparişler yüklenirken bir hata oluştu.<br><br>
+
+                Firebase güvenlik kurallarını kontrol et.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================
+   SİPARİŞİ EKRANA YAZ
+===================================== */
+
+function renderOrder(order){
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "order";
+
+
+    const products =
+        Array.isArray(
+            order.urunler
+        )
+        ? order.urunler
+        : [];
+
+
+    let productsHTML = "";
+
+
+    products.forEach(
+        function(item){
+
+            const quantity =
+                Number(
+                    item.adet
+                ) || 1;
+
+
+            const price =
+                Number(
+                    item.fiyat
+                ) || 0;
+
+
+            productsHTML += `
+
+                <div class="product">
+
+                    <img
+                        class="product-image"
+                        src="${item.resim || ""}"
+                        alt=""
+                    >
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            ${escapeHTML(
+                                item.isim || "Ürün"
+                            )}
+                        </div>
+
+                        <div class="product-details">
+
+                            Beden:
+                            ${escapeHTML(
+                                item.beden || "-"
+                            )}
+
+                            <br>
+
+                            Adet:
+                            ${quantity}
+
+                        </div>
+
+                        <div class="product-price">
+
+                            ${price * quantity} TL
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    const date =
+        formatDate(
+            order.tarih
+        );
+
+
+    const status =
+        order.durum ||
+        "Yeni";
+
+
+    element.innerHTML = `
+
+        <div class="order-head">
+
+            <div>
+
+                <div class="order-number">
+
+                    ${escapeHTML(
+                        order.siparisHayır ||
+                        order.siparisNo ||
+                        "Sipariş"
+                    )}
+
+                </div>
+
+                <div class="order-date">
+
+                    ${date}
+
+                </div>
+
+            </div>
+
+
+            <div class="status">
+
+                ${escapeHTML(
+                    status
+                )}
+
+            </div>
+
+        </div>
+
+
+        <div class="products">
+
+            ${productsHTML}
+
+        </div>
+
+
+        <div class="order-bottom">
+
+            <div class="info-row">
+
+                <span>
+                    Ara toplam
+                </span>
+
+                <span>
+                    ${Number(
+                        order.araToplam
+                    ) || 0} TL
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Kargo
+                </span>
+
+                <span>
+
+                    ${
+                        Number(order.kargo) === 0
+                        ? "Kargo Bedava"
+                        : (Number(order.kargo) || 0) + " TL"
+                    }
+
+                </span>
+
+            </div>
+
+
+            <div class="total-row">
+
+                <span>
+                    TOPLAM
+                </span>
+
+                <span>
+                    ${Number(
+                        order.toplam
+                    ) || 0} TL
+                </span>
+
+            </div>
+
+
+            <div class="address">
+
+                Teslimat adresi:<br>
+
+                ${escapeHTML(
+                    order.adres || "-"
+                )}
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    ordersElement.appendChild(
+        element
+    );
+
+}
+
+
+/* =====================================
+   TARİH
+===================================== */
+
+function formatDate(value){
+
+    if(!value){
+
+        return "-";
+
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return "-";
+
+    }
+
+
+    return date.toLocaleDateString(
+        "tr-TR",
+        {
+            day:"2-digit",
+            month:"2-digit",
+            year:"numeric"
+        }
+    ) + " " +
+
+    date.toLocaleTimeString(
+        "tr-TR",
+        {
+            hour:"2-digit",
+            minute:"2-digit"
+        }
+    );
+
+}
+
+
+/* =====================================
+   GÜVENLİ METİN
+===================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================
+   GİRİŞ KONTROLÜ
+===================================== */
+
+onAuthStateChanged(
+    auth,
+    function(user){
+
+        if(!user){
+
+            ordersElement.innerHTML = `
+
+                <div class="empty">
+
+                    Siparişlerini görmek için
+                    önce hesabına giriş yapmalısın.
+
+                    <a
+                        href="giris.html"
+                        class="login-button"
+                    >
+                        GİRİŞ YAP
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        loadOrders(user);
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
