@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>Giriş Yap - VELRON</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -17,6 +23,7 @@ body{
     background:#000;
     color:#fff;
     font-family:Arial,sans-serif;
+
     display:flex;
     align-items:center;
     justify-content:center;
@@ -30,38 +37,57 @@ body{
 
 .logo{
     text-align:center;
-    font-family:Georgia,"Times New Roman",serif;
+
+    font-family:Georgia,
+        "Times New Roman",
+        serif;
+
     font-size:24px;
     font-weight:bold;
+
     letter-spacing:7px;
+
     margin-bottom:45px;
 }
 
 .title{
     font-size:22px;
     font-weight:600;
+
     margin-bottom:8px;
 }
 
 .subtitle{
     color:#777;
     font-size:12px;
+
     margin-bottom:30px;
 }
 
 .google-button{
     width:100%;
     height:50px;
+
     background:#fff;
     color:#000;
+
     border:none;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     gap:10px;
+
     font-size:12px;
     font-weight:bold;
+
     cursor:pointer;
+}
+
+.google-button:active{
+    opacity:.7;
 }
 
 .google-button:disabled{
@@ -72,90 +98,142 @@ body{
 .google-icon{
     width:20px;
     height:20px;
+
     border-radius:50%;
+
     background:#000;
     color:#fff;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     font-size:12px;
     font-weight:bold;
 }
 
 .message{
     display:none;
+
     text-align:center;
+
     color:#aaa;
+
     font-size:11px;
+
     margin-top:18px;
+
     line-height:1.5;
+
     word-break:break-word;
 }
 
 .register{
     text-align:center;
+
     margin-top:30px;
+
     color:#777;
+
     font-size:11px;
 }
 
 .register a{
     color:#fff;
+
     text-decoration:none;
+
     margin-left:5px;
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <main class="container">
 
-    <div class="logo">
-        VELRON
-    </div>
 
-    <h1 class="title">
-        Giriş Yap
-    </h1>
+<div class="logo">
+    VELRON
+</div>
 
-    <p class="subtitle">
-        VELRON hesabına Google ile giriş yap.
-    </p>
 
-    <button
-        id="googleButton"
-        class="google-button"
-        type="button"
-    >
-        <span class="google-icon">G</span>
-        Google ile devam et
-    </button>
+<h1 class="title">
+    Giriş Yap
+</h1>
 
-    <div
-        id="message"
-        class="message"
-    ></div>
 
-    <div class="register">
-        Hesabın yok mu?
-        <a href="kayit.html">Kaydol</a>
-    </div>
+<p class="subtitle">
+    VELRON hesabına Google ile giriş yap.
+</p>
+
+
+<button
+    id="googleButton"
+    class="google-button"
+    type="button"
+>
+
+    <span class="google-icon">
+        G
+    </span>
+
+    Google ile devam et
+
+</button>
+
+
+<div
+    id="message"
+    class="message"
+></div>
+
+
+<div class="register">
+
+    Hesabın yok mu?
+
+    <a href="kayit.html">
+        Kaydol
+    </a>
+
+</div>
+
 
 </main>
 
+
 <script type="module">
+
+
+/* =========================
+   FIREBASE
+========================= */
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
 import {
     getAuth,
     GoogleAuthProvider,
     signInWithPopup
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig = {
 
@@ -179,46 +257,93 @@ const firebaseConfig = {
 
     measurementId:
         "G-74XHVN6V22"
+
 };
 
 
+/* =========================
+   FIREBASE BAŞLAT
+========================= */
+
 const app =
-    initializeApp(firebaseConfig);
+    initializeApp(
+        firebaseConfig
+    );
+
 
 const auth =
     getAuth(app);
+
 
 const googleProvider =
     new GoogleAuthProvider();
 
 
+/* =========================
+   ELEMENTLER
+========================= */
+
 const googleButton =
-    document.getElementById("googleButton");
+    document.getElementById(
+        "googleButton"
+    );
+
 
 const message =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
 
+
+/* =========================
+   ADMIN E-POSTA
+========================= */
+
+const ADMIN_EMAIL =
+    "storevelron@gmail.com";
+
+
+/* =========================
+   MESAJ
+========================= */
 
 function showMessage(text){
 
-    message.textContent = text;
-    message.style.display = "block";
+    message.textContent =
+        text;
+
+    message.style.display =
+        "block";
 
 }
 
+
+/* =========================
+   GOOGLE GİRİŞ
+========================= */
 
 googleButton.addEventListener(
     "click",
     async function(){
 
-        message.style.display = "none";
+        message.style.display =
+            "none";
 
-        googleButton.disabled = true;
+
+        googleButton.disabled =
+            true;
+
 
         googleButton.innerHTML = `
-            <span class="google-icon">G</span>
+
+            <span class="google-icon">
+                G
+            </span>
+
             Google açılıyor...
+
         `;
+
 
         try{
 
@@ -228,27 +353,47 @@ googleButton.addEventListener(
                     googleProvider
                 );
 
+
             const user =
                 result.user;
 
+
             console.log(
-                "Giriş yapan kullanıcı:",
-                user
+                "Giriş yapan:",
+                user.email
             );
+
 
             showMessage(
                 "Giriş başarılı. Yönlendiriliyorsun..."
             );
 
+
             setTimeout(
                 function(){
 
-                    window.location.href =
-                        "index.html";
+                    /* ADMIN KONTROLÜ */
+
+                    if(
+                        user.email &&
+                        user.email.toLowerCase() ===
+                        ADMIN_EMAIL.toLowerCase()
+                    ){
+
+                        window.location.href =
+                            "admin.html";
+
+                    }else{
+
+                        window.location.href =
+                            "index.html";
+
+                    }
 
                 },
                 500
             );
+
 
         }catch(error){
 
@@ -257,16 +402,25 @@ googleButton.addEventListener(
                 error
             );
 
+
             showMessage(
                 "Google giriş hatası: " +
                 error.code
             );
 
-            googleButton.disabled = false;
+
+            googleButton.disabled =
+                false;
+
 
             googleButton.innerHTML = `
-                <span class="google-icon">G</span>
+
+                <span class="google-icon">
+                    G
+                </span>
+
                 Google ile devam et
+
             `;
 
         }
@@ -274,7 +428,9 @@ googleButton.addEventListener(
     }
 );
 
+
 </script>
 
 </body>
+
 </html>
