@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Hesabım - VELRON</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:#000;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.header{
+    height:70px;
+    border-bottom:1px solid #222;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+}
+
+.back{
+    color:#fff;
+    text-decoration:none;
+    font-size:11px;
+}
+
+.logo{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:19px;
+    font-weight:bold;
+    letter-spacing:6px;
+}
+
+.header-space{
+    width:50px;
+}
+
+.container{
+    max-width:700px;
+    margin:0 auto;
+    padding:40px 20px 60px;
+}
+
+.title{
+    font-size:25px;
+    font-weight:500;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#666;
+    font-size:11px;
+    margin-bottom:35px;
+}
+
+.account-box{
+    background:#080808;
+    border:1px solid #292929;
+    padding:22px;
+}
+
+.section-title{
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.info{
+    border-bottom:1px solid #222;
+    padding:14px 0;
+}
+
+.info:first-of-type{
+    padding-top:0;
+}
+
+.info:last-child{
+    border-bottom:none;
+}
+
+.label{
+    color:#666;
+    font-size:8px;
+    margin-bottom:7px;
+    letter-spacing:.5px;
+}
+
+.value{
+    color:#fff;
+    font-size:11px;
+    word-break:break-word;
+}
+
+.orders-button{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    margin-top:20px;
+    padding:18px;
+    background:#080808;
+    border:1px solid #292929;
+    color:#fff;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.orders-left{
+    text-align:left;
+}
+
+.orders-title{
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:.7px;
+}
+
+.orders-subtitle{
+    color:#666;
+    font-size:9px;
+    margin-top:6px;
+}
+
+.arrow{
+    color:#777;
+    font-size:18px;
+}
+
+.loading{
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    padding:50px 20px;
+}
+
+.denied{
+    text-align:center;
+    padding:80px 20px;
+}
+
+.denied-title{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.denied-text{
+    color:#777;
+    font-size:11px;
+    margin-bottom:20px;
+}
+
+.back-button{
+    display:inline-block;
+    background:#fff;
+    color:#000;
+    text-decoration:none;
+    padding:12px 18px;
+    font-size:9px;
+    font-weight:bold;
+}
+
+@media(max-width:700px){
+
+    .container{
+        padding:30px 15px 50px;
+    }
+
+    .header{
+        padding:0 15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← GERİ
+    </a>
+
+
+    <div class="logo">
+        VELRON
+    </div>
+
+
+    <div class="header-space"></div>
+
+</header>
+
+
+<div
+    id="loading"
+    class="loading"
+>
+    Hesap bilgileri yükleniyor...
+</div>
+
+
+<div
+    id="content"
+    style="display:none;"
+>
+
+    <main class="container">
+
+        <h1 class="title">
+            Hesabım
+        </h1>
+
+
+        <p class="subtitle">
+            Hesap bilgilerin ve siparişlerin.
+        </p>
+
+
+        <div class="account-box">
+
+            <div class="section-title">
+                HESAP BİLGİLERİ
+            </div>
+
+
+            <div class="info">
+
+                <div class="label">
+                    AD SOYAD
+                </div>
+
+                <div
+                    class="value"
+                    id="userName"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="label">
+                    E-POSTA
+                </div>
+
+                <div
+                    class="value"
+                    id="userEmail"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="label">
+                    GİRİŞ YÖNTEMİ
+                </div>
+
+                <div
+                    class="value"
+                    id="userProvider"
+                >
+                    -
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TAMAMLANAN SİPARİŞLER -->
+
+        <a
+            href="tamamlanan-siparisler.html"
+            class="orders-button"
+        >
+
+            <div class="orders-left">
+
+                <div class="orders-title">
+                    TAMAMLANAN SİPARİŞLER
+                </div>
+
+                <div class="orders-subtitle">
+                    Geçmiş siparişlerini görüntüle
+                </div>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+        </a>
+
+
+    </main>
+
+</div>
+
+
+<div
+    id="denied"
+    class="denied"
+    style="display:none;"
+>
+
+    <div class="denied-title">
+        Giriş yapmalısın
+    </div>
+
+    <div class="denied-text">
+        Hesabını görüntülemek için giriş yap.
+    </div>
+
+    <a
+        href="giris.html"
+        class="back-button"
+    >
+        GİRİŞ YAP
+    </a>
+
+</div>
+
+
+<script type="module">
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyD8osmrzNWj32T-1kNx-jmHlWcAm5_7xeg",
+
+    authDomain:
+        "velron-831db.firebaseapp.com",
+
+    projectId:
+        "velron-831db",
+
+    storageBucket:
+        "velron-831db.firebasestorage.app",
+
+    messagingSenderId:
+        "622435814773",
+
+    appId:
+        "1:622435814773:web:bd94aff51e78ba2a7c573c",
+
+    measurementId:
+        "G-74XHVN6V22"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+/* =========================
+   ELEMENTLER
+========================= */
+
+const loading =
+    document.getElementById(
+        "loading"
+    );
+
+const content =
+    document.getElementById(
+        "content"
+    );
+
+const denied =
+    document.getElementById(
+        "denied"
+    );
+
+const userName =
+    document.getElementById(
+        "userName"
+    );
+
+const userEmail =
+    document.getElementById(
+        "userEmail"
+    );
+
+const userProvider =
+    document.getElementById(
+        "userProvider"
+    );
+
+
+/* =========================
+   KULLANICI KONTROLÜ
+========================= */
+
+onAuthStateChanged(
+    auth,
+    function(user){
+
+        loading.style.display =
+            "none";
+
+
+        if(!user){
+
+            content.style.display =
+                "none";
+
+            denied.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        content.style.display =
+            "block";
+
+        denied.style.display =
+            "none";
+
+
+        /* AD SOYAD */
+
+        userName.textContent =
+            user.displayName ||
+            "Belirtilmemiş";
+
+
+        /* E-POSTA */
+
+        userEmail.textContent =
+            user.email ||
+            "Belirtilmemiş";
+
+
+        /* GİRİŞ YÖNTEMİ */
+
+        if(
+            user.providerData &&
+            user.providerData.length > 0
+        ){
+
+            const provider =
+                user.providerData[0]
+                .providerId;
+
+
+            if(
+                provider ===
+                "google.com"
+            ){
+
+                userProvider.textContent =
+                    "Google";
+
+            }else{
+
+                userProvider.textContent =
+                    "E-posta";
+
+            }
+
+        }else{
+
+            userProvider.textContent =
+                "E-posta";
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
