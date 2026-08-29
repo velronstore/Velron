@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Giriş Yap - VELRON</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -23,27 +17,9 @@ body{
     background:#000;
     color:#fff;
     font-family:Arial,sans-serif;
-
     display:flex;
     align-items:center;
     justify-content:center;
-}
-
-.back-button{
-    position:fixed;
-    top:15px;
-    left:15px;
-
-    width:35px;
-    height:35px;
-
-    background:none;
-    border:none;
-
-    color:#fff;
-    font-size:28px;
-
-    cursor:pointer;
 }
 
 .container{
@@ -54,137 +30,38 @@ body{
 
 .logo{
     text-align:center;
-
-    font-family:Georgia,
-        "Times New Roman",
-        serif;
-
+    font-family:Georgia,"Times New Roman",serif;
     font-size:24px;
     font-weight:bold;
-
     letter-spacing:7px;
-
     margin-bottom:45px;
 }
 
 .title{
     font-size:22px;
     font-weight:600;
-
     margin-bottom:8px;
 }
 
 .subtitle{
     color:#777;
     font-size:12px;
-
     margin-bottom:30px;
-}
-
-.input-group{
-    margin-bottom:16px;
-}
-
-.input-group label{
-    display:block;
-
-    color:#aaa;
-    font-size:11px;
-
-    margin-bottom:7px;
-}
-
-.input-group input{
-    width:100%;
-    height:48px;
-
-    background:#080808;
-
-    border:1px solid #333;
-
-    outline:none;
-
-    color:#fff;
-
-    padding:0 13px;
-
-    font-size:13px;
-}
-
-.input-group input:focus{
-    border-color:#777;
-}
-
-.login-button{
-    width:100%;
-    height:50px;
-
-    background:#fff;
-    color:#000;
-
-    border:none;
-
-    font-size:12px;
-    font-weight:bold;
-
-    letter-spacing:1.5px;
-
-    cursor:pointer;
-}
-
-.login-button:active{
-    opacity:.7;
-}
-
-.login-button:disabled{
-    opacity:.5;
-    cursor:not-allowed;
-}
-
-.divider{
-    display:flex;
-    align-items:center;
-
-    gap:12px;
-
-    margin:25px 0;
-}
-
-.divider-line{
-    flex:1;
-    height:1px;
-
-    background:#292929;
-}
-
-.divider span{
-    color:#666;
-    font-size:10px;
 }
 
 .google-button{
     width:100%;
     height:50px;
-
-    background:#080808;
-    color:#fff;
-
-    border:1px solid #333;
-
+    background:#fff;
+    color:#000;
+    border:none;
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     gap:10px;
-
     font-size:12px;
-
+    font-weight:bold;
     cursor:pointer;
-}
-
-.google-button:active{
-    opacity:.7;
 }
 
 .google-button:disabled{
@@ -193,28 +70,31 @@ body{
 }
 
 .google-icon{
-    width:18px;
-    height:18px;
-
+    width:20px;
+    height:20px;
     border-radius:50%;
-
-    background:#fff;
-    color:#000;
-
+    background:#000;
+    color:#fff;
     display:flex;
-
     align-items:center;
     justify-content:center;
-
-    font-size:11px;
+    font-size:12px;
     font-weight:bold;
+}
+
+.message{
+    display:none;
+    text-align:center;
+    color:#aaa;
+    font-size:11px;
+    margin-top:18px;
+    line-height:1.5;
+    word-break:break-word;
 }
 
 .register{
     text-align:center;
-
     margin-top:30px;
-
     color:#777;
     font-size:11px;
 }
@@ -222,182 +102,59 @@ body{
 .register a{
     color:#fff;
     text-decoration:none;
-
     margin-left:5px;
 }
-
-.message{
-    display:none;
-
-    text-align:center;
-
-    color:#aaa;
-
-    font-size:11px;
-
-    margin-top:15px;
-
-    line-height:1.5;
-
-    word-break:break-word;
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<button
-    class="back-button"
-    type="button"
-    onclick="history.back()"
->
-    ‹
-</button>
-
-
 <main class="container">
-
 
     <div class="logo">
         VELRON
     </div>
 
-
     <h1 class="title">
         Giriş Yap
     </h1>
 
-
     <p class="subtitle">
-        VELRON hesabına giriş yap.
+        VELRON hesabına Google ile giriş yap.
     </p>
-
-
-    <form
-        id="loginForm"
-    >
-
-
-        <div class="input-group">
-
-            <label>
-                E-POSTA
-            </label>
-
-            <input
-                id="email"
-                type="email"
-                placeholder="E-posta adresin"
-                autocomplete="email"
-                required
-            >
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>
-                ŞİFRE
-            </label>
-
-            <input
-                id="password"
-                type="password"
-                placeholder="Şifren"
-                autocomplete="current-password"
-                required
-            >
-
-        </div>
-
-
-        <button
-            id="loginButton"
-            class="login-button"
-            type="submit"
-        >
-            GİRİŞ YAP
-        </button>
-
-
-    </form>
-
-
-    <div class="divider">
-
-        <div class="divider-line"></div>
-
-        <span>
-            VEYA
-        </span>
-
-        <div class="divider-line"></div>
-
-    </div>
-
 
     <button
         id="googleButton"
         class="google-button"
         type="button"
     >
-
-        <span class="google-icon">
-            G
-        </span>
-
+        <span class="google-icon">G</span>
         Google ile devam et
-
     </button>
-
 
     <div
         id="message"
         class="message"
     ></div>
 
-
     <div class="register">
-
         Hesabın yok mu?
-
-        <a href="kayit.html">
-            Kaydol
-        </a>
-
+        <a href="kayit.html">Kaydol</a>
     </div>
-
 
 </main>
 
-
 <script type="module">
-
-
-/* =========================
-   FIREBASE
-========================= */
 
 import {
     initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 import {
     getAuth,
-    signInWithEmailAndPassword,
     GoogleAuthProvider,
     signInWithPopup
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 const firebaseConfig = {
@@ -422,278 +179,66 @@ const firebaseConfig = {
 
     measurementId:
         "G-74XHVN6V22"
-
 };
 
 
 const app =
-    initializeApp(
-        firebaseConfig
-    );
-
+    initializeApp(firebaseConfig);
 
 const auth =
     getAuth(app);
-
 
 const googleProvider =
     new GoogleAuthProvider();
 
 
-/* =========================
-   ELEMENTLER
-========================= */
-
-const loginForm =
-    document.getElementById(
-        "loginForm"
-    );
-
-
-const emailInput =
-    document.getElementById(
-        "email"
-    );
-
-
-const passwordInput =
-    document.getElementById(
-        "password"
-    );
-
-
-const loginButton =
-    document.getElementById(
-        "loginButton"
-    );
-
-
 const googleButton =
-    document.getElementById(
-        "googleButton"
-    );
-
+    document.getElementById("googleButton");
 
 const message =
-    document.getElementById(
-        "message"
-    );
+    document.getElementById("message");
 
-
-/* =========================
-   MESAJ
-========================= */
 
 function showMessage(text){
 
-    message.textContent =
-        text;
-
-    message.style.display =
-        "block";
+    message.textContent = text;
+    message.style.display = "block";
 
 }
 
-
-function hideMessage(){
-
-    message.textContent =
-        "";
-
-    message.style.display =
-        "none";
-
-}
-
-
-/* =========================
-   E-POSTA İLE GİRİŞ
-========================= */
-
-loginForm.addEventListener(
-    "submit",
-    async function(event){
-
-        event.preventDefault();
-
-        hideMessage();
-
-
-        const email =
-            emailInput.value.trim();
-
-
-        const password =
-            passwordInput.value;
-
-
-        if(
-            email === ""
-        ){
-
-            showMessage(
-                "Lütfen e-posta adresini yaz."
-            );
-
-            emailInput.focus();
-
-            return;
-
-        }
-
-
-        if(
-            password === ""
-        ){
-
-            showMessage(
-                "Lütfen şifreni yaz."
-            );
-
-            passwordInput.focus();
-
-            return;
-
-        }
-
-
-        loginButton.disabled =
-            true;
-
-        loginButton.textContent =
-            "GİRİŞ YAPILIYOR...";
-
-
-        try{
-
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-
-            showMessage(
-                "Giriş başarılı."
-            );
-
-
-            setTimeout(
-                function(){
-
-                    window.location.href =
-                        "index.html";
-
-                },
-                700
-            );
-
-
-        }catch(error){
-
-            console.error(
-                "Giriş hatası:",
-                error
-            );
-
-
-            if(
-                error.code ===
-                "auth/invalid-credential"
-            ){
-
-                showMessage(
-                    "E-posta veya şifre yanlış."
-                );
-
-            }else if(
-                error.code ===
-                "auth/user-not-found"
-            ){
-
-                showMessage(
-                    "Bu hesap bulunamadı."
-                );
-
-            }else if(
-                error.code ===
-                "auth/wrong-password"
-            ){
-
-                showMessage(
-                    "Şifre yanlış."
-                );
-
-            }else if(
-                error.code ===
-                "auth/invalid-email"
-            ){
-
-                showMessage(
-                    "Geçerli bir e-posta adresi yaz."
-                );
-
-            }else if(
-                error.code ===
-                "auth/too-many-requests"
-            ){
-
-                showMessage(
-                    "Çok fazla deneme yapıldı. Biraz sonra tekrar dene."
-                );
-
-            }else{
-
-                showMessage(
-                    "Hata: " +
-                    (
-                        error.code ||
-                        error.message ||
-                        "Bilinmeyen hata"
-                    )
-                );
-
-            }
-
-
-            loginButton.disabled =
-                false;
-
-            loginButton.textContent =
-                "GİRİŞ YAP";
-
-        }
-
-    }
-);
-
-
-/* =========================
-   GOOGLE
-========================= */
 
 googleButton.addEventListener(
     "click",
     async function(){
 
-        hideMessage();
+        message.style.display = "none";
 
-        googleButton.disabled =
-            true;
+        googleButton.disabled = true;
 
+        googleButton.innerHTML = `
+            <span class="google-icon">G</span>
+            Google açılıyor...
+        `;
 
         try{
 
-            await signInWithPopup(
-                auth,
-                googleProvider
-            );
+            const result =
+                await signInWithPopup(
+                    auth,
+                    googleProvider
+                );
 
+            const user =
+                result.user;
+
+            console.log(
+                "Giriş yapan kullanıcı:",
+                user
+            );
 
             showMessage(
-                "Google ile giriş başarılı."
+                "Giriş başarılı. Yönlendiriliyorsun..."
             );
-
 
             setTimeout(
                 function(){
@@ -702,9 +247,8 @@ googleButton.addEventListener(
                         "index.html";
 
                 },
-                700
+                500
             );
-
 
         }catch(error){
 
@@ -713,44 +257,17 @@ googleButton.addEventListener(
                 error
             );
 
+            showMessage(
+                "Google giriş hatası: " +
+                error.code
+            );
 
-            if(
-                error.code ===
-                "auth/popup-closed-by-user"
-            ){
+            googleButton.disabled = false;
 
-                googleButton.disabled =
-                    false;
-
-                return;
-
-            }
-
-
-            if(
-                error.code ===
-                "auth/popup-blocked"
-            ){
-
-                showMessage(
-                    "Google penceresi engellendi."
-                );
-
-            }else{
-
-                showMessage(
-                    "Google hatası: " +
-                    (
-                        error.code ||
-                        "Bilinmeyen hata"
-                    )
-                );
-
-            }
-
-
-            googleButton.disabled =
-                false;
+            googleButton.innerHTML = `
+                <span class="google-icon">G</span>
+                Google ile devam et
+            `;
 
         }
 
@@ -759,7 +276,5 @@ googleButton.addEventListener(
 
 </script>
 
-
 </body>
-
 </html>
