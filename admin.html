@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel - VELRON</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:#000;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.header{
+    height:70px;
+    border-bottom:1px solid #222;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    background:#000;
+}
+
+.logo{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:6px;
+}
+
+.admin-text{
+    color:#777;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+.container{
+    width:100%;
+    max-width:1100px;
+    margin:0 auto;
+    padding:30px 20px 60px;
+}
+
+.page-title{
+    font-size:24px;
+    font-weight:500;
+    margin-bottom:7px;
+}
+
+.page-subtitle{
+    color:#666;
+    font-size:11px;
+    margin-bottom:30px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.stat{
+    background:#080808;
+    border:1px solid #292929;
+    padding:18px;
+}
+
+.stat-label{
+    color:#777;
+    font-size:8px;
+    margin-bottom:10px;
+    letter-spacing:.5px;
+}
+
+.stat-value{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.section{
+    margin-top:40px;
+}
+
+.section-title{
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom:15px;
+}
+
+.users,
+.orders{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.user,
+.order{
+    background:#080808;
+    border:1px solid #292929;
+    padding:18px;
+}
+
+.user-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.user-name{
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.user-email{
+    color:#aaa;
+    font-size:10px;
+    word-break:break-all;
+}
+
+.user-provider{
+    border:1px solid #444;
+    padding:7px 10px;
+    color:#aaa;
+    font-size:9px;
+}
+
+.user-info{
+    border-top:1px solid #222;
+    margin-top:15px;
+    padding-top:15px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.user-label,
+.info-label{
+    color:#666;
+    font-size:8px;
+    margin-bottom:6px;
+}
+
+.user-value,
+.info-value{
+    color:#fff;
+    font-size:10px;
+    word-break:break-word;
+}
+
+.order-header{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding-bottom:15px;
+    border-bottom:1px solid #222;
+}
+
+.order-number{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.order-date{
+    color:#666;
+    font-size:9px;
+    margin-top:7px;
+}
+
+.status-select{
+    background:#080808;
+    color:#fff;
+    border:1px solid #444;
+    padding:8px 10px;
+    font-size:9px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    padding:18px 0;
+    border-bottom:1px solid #222;
+}
+
+.products{
+    padding-top:10px;
+}
+
+.product{
+    display:flex;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid #1d1d1d;
+}
+
+.product-image{
+    width:65px;
+    height:80px;
+    object-fit:contain;
+    background:#111;
+}
+
+.product-info{
+    flex:1;
+}
+
+.product-name{
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.product-details{
+    color:#888;
+    font-size:9px;
+    line-height:1.8;
+}
+
+.product-price{
+    margin-top:5px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.order-total{
+    border-top:1px solid #333;
+    margin-top:8px;
+    padding-top:15px;
+    display:flex;
+    justify-content:flex-end;
+    gap:25px;
+}
+
+.total-label{
+    color:#777;
+    font-size:10px;
+}
+
+.total-value{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.delete-button{
+    background:#080808;
+    color:#aaa;
+    border:1px solid #444;
+    padding:10px 15px;
+    font-size:9px;
+    cursor:pointer;
+    margin-top:18px;
+}
+
+.empty{
+    text-align:center;
+    color:#666;
+    border:1px solid #292929;
+    padding:40px 20px;
+    font-size:11px;
+}
+
+.loading{
+    text-align:center;
+    color:#777;
+    padding:40px 20px;
+    font-size:11px;
+}
+
+.access-denied{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.access-title{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.access-text{
+    color:#777;
+    font-size:11px;
+    margin-bottom:20px;
+}
+
+.back-button{
+    display:inline-block;
+    background:#fff;
+    color:#000;
+    text-decoration:none;
+    padding:12px 18px;
+    font-size:9px;
+    font-weight:bold;
+}
+
+.error{
+    color:#aaa;
+    background:#080808;
+    border:1px solid #444;
+    padding:20px;
+    font-size:11px;
+    line-height:1.6;
+}
+
+@media(max-width:800px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .container{
+        padding:25px 15px 50px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .user-top,
+    .order-header{
+        flex-direction:column;
+    }
+
+    .user-info,
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div
+id="loading"
+class="loading"
+>
+Admin kontrol ediliyor...
+</div>
+
+
+<div
+id="denied"
+class="access-denied"
+style="display:none;"
+>
+
+<div>
+
+<div class="logo">
+VELRON
+</div>
+
+<div class="access-title">
+Erişim reddedildi
+</div>
+
+<div class="access-text">
+Bu sayfaya yalnızca VELRON admin hesabı erişebilir.
+</div>
+
+<a
+href="index.html"
+class="back-button"
+>
+ANA SAYFAYA DÖN
+</a>
+
+</div>
+
+</div>
+
+
+<div
+id="adminPanel"
+style="display:none;"
+>
+
+<header class="header">
+
+<div class="logo">
+VELRON
+</div>
+
+<div class="admin-text">
+ADMIN PANEL
+</div>
+
+</header>
+
+
+<main class="container">
+
+<h1 class="page-title">
+Admin Panel
+</h1>
+
+<p class="page-subtitle">
+VELRON mağaza yönetim paneli.
+</p>
+
+
+<div class="stats">
+
+<div class="stat">
+<div class="stat-label">TOPLAM KULLANICI</div>
+<div class="stat-value" id="totalUsers">0</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">TOPLAM SİPARİŞ</div>
+<div class="stat-value" id="totalOrders">0</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">TOPLAM ÜRÜN</div>
+<div class="stat-value" id="totalProducts">0</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">TOPLAM CİRO</div>
+<div class="stat-value" id="totalRevenue">0 TL</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">GOOGLE KULLANICI</div>
+<div class="stat-value" id="googleUsers">0</div>
+</div>
+
+</div>
+
+
+<section class="section">
+
+<div class="section-title">
+KULLANICILAR
+</div>
+
+<div
+id="users"
+class="users"
+>
+
+<div class="loading">
+Kullanıcılar yükleniyor...
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+GELEN SİPARİŞLER
+</div>
+
+<div
+id="orders"
+class="orders"
+>
+
+<div class="loading">
+Siparişler yükleniyor...
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    updateDoc,
+    deleteDoc,
+    doc
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyD8osmrzNWj32T-1kNx-jmHlWcAm5_7xeg",
+
+    authDomain:
+        "velron-831db.firebaseapp.com",
+
+    projectId:
+        "velron-831db",
+
+    storageBucket:
+        "velron-831db.firebasestorage.app",
+
+    messagingSenderId:
+        "622435814773",
+
+    appId:
+        "1:622435814773:web:bd94aff51e78ba2a7c573c",
+
+    measurementId:
+        "G-74XHVN6V22"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+const ADMIN_EMAIL =
+    "storevelron@gmail.com";
+
+
+const loading =
+    document.getElementById("loading");
+
+const denied =
+    document.getElementById("denied");
+
+const adminPanel =
+    document.getElementById("adminPanel");
+
+
+/* =========================
+   ADMIN KONTROLÜ
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async function(user){
+
+        try{
+
+            if(
+                !user ||
+                !user.email ||
+                user.email.toLowerCase() !==
+                ADMIN_EMAIL.toLowerCase()
+            ){
+
+                loading.style.display =
+                    "none";
+
+                denied.style.display =
+                    "flex";
+
+                return;
+
+            }
+
+
+            loading.style.display =
+                "none";
+
+            adminPanel.style.display =
+                "block";
+
+
+            await loadUsers();
+            await loadOrders();
+
+        }catch(error){
+
+            console.error(error);
+
+            loading.style.display =
+                "none";
+
+            adminPanel.style.display =
+                "block";
+
+            document.getElementById(
+                "users"
+            ).innerHTML = `
+
+                <div class="error">
+
+                Admin panel açıldı fakat veri yüklenirken hata oluştu.
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.code ||
+                    error.message
+                )}
+
+                </div>
+
+            `;
+
+        }
+
+    }
+);
+
+
+/* =========================
+   USERS
+========================= */
+
+async function loadUsers(){
+
+    const usersElement =
+        document.getElementById("users");
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "kullanicilar"
+                )
+            );
+
+        const users = [];
+
+        snapshot.forEach(
+            function(item){
+
+                users.push({
+                    id:item.id,
+                    ...item.data()
+                });
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalUsers"
+        ).textContent =
+            users.length;
+
+
+        let googleCount = 0;
+
+        users.forEach(
+            function(user){
+
+                if(
+                    String(
+                        user.saglayici || ""
+                    ).toLowerCase() ===
+                    "google"
+                ){
+
+                    googleCount++;
+
+                }
+
+            }
+        );
+
+
+        document.getElementById(
+            "googleUsers"
+        ).textContent =
+            googleCount;
+
+
+        if(
+            users.length === 0
+        ){
+
+            usersElement.innerHTML =
+                `<div class="empty">Henüz kullanıcı bulunmuyor.</div>`;
+
+            return;
+
+        }
+
+
+        usersElement.innerHTML = "";
+
+
+        users.reverse().forEach(
+            function(user){
+
+                const element =
+                    document.createElement("div");
+
+                element.className =
+                    "user";
+
+
+                const provider =
+                    user.saglayici ||
+                    "E-posta";
+
+
+                element.innerHTML = `
+
+                    <div class="user-top">
+
+                        <div>
+
+                            <div class="user-name">
+                            ${escapeHTML(
+                                user.isim ||
+                                user.adSoyad ||
+                                "İsimsiz kullanıcı"
+                            )}
+                            </div>
+
+                            <div class="user-email">
+                            ${escapeHTML(
+                                user.email ||
+                                "-"
+                            )}
+                            </div>
+
+                        </div>
+
+                        <div class="user-provider">
+                        ${escapeHTML(provider)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="user-info">
+
+                        <div>
+                            <div class="user-label">
+                            KAYIT TARİHİ
+                            </div>
+
+                            <div class="user-value">
+                            ${escapeHTML(
+                                formatDate(
+                                    user.kayitTarihi ||
+                                    user.tarih
+                                )
+                            )}
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="user-label">
+                            SON GİRİŞ
+                            </div>
+
+                            <div class="user-value">
+                            ${escapeHTML(
+                                formatDate(
+                                    user.sonGiris
+                                )
+                            )}
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="user-label">
+                            KULLANICI UID
+                            </div>
+
+                            <div class="user-value">
+                            ${escapeHTML(
+                                user.uid ||
+                                user.id ||
+                                "-"
+                            )}
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="user-label">
+                            SAĞLAYICI
+                            </div>
+
+                            <div class="user-value">
+                            ${escapeHTML(provider)}
+                            </div>
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                usersElement.appendChild(
+                    element
+                );
+
+            }
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        usersElement.innerHTML = `
+
+            <div class="error">
+
+            Kullanıcılar okunamadı.
+
+            <br><br>
+
+            ${escapeHTML(
+                error.code ||
+                error.message
+            )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   ORDERS
+========================= */
+
+async function loadOrders(){
+
+    const ordersElement =
+        document.getElementById("orders");
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "siparisler"
+                )
+            );
+
+        const orders = [];
+
+        snapshot.forEach(
+            function(item){
+
+                orders.push({
+                    id:item.id,
+                    ...item.data()
+                });
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalOrders"
+        ).textContent =
+            orders.length;
+
+
+        let productCount = 0;
+        let revenue = 0;
+
+
+        orders.forEach(
+            function(order){
+
+                revenue +=
+                    Number(
+                        order.toplam
+                    ) || 0;
+
+
+                if(
+                    Array.isArray(
+                        order.urunler
+                    )
+                ){
+
+                    order.urunler.forEach(
+                        function(product){
+
+                            productCount +=
+                                Number(
+                                    product.adet
+                                ) || 0;
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalProducts"
+        ).textContent =
+            productCount;
+
+
+        document.getElementById(
+            "totalRevenue"
+        ).textContent =
+            formatMoney(revenue);
+
+
+        if(
+            orders.length === 0
+        ){
+
+            ordersElement.innerHTML =
+                `<div class="empty">Henüz sipariş bulunmuyor.</div>`;
+
+            return;
+
+        }
+
+
+        ordersElement.innerHTML = "";
+
+
+        orders.reverse().forEach(
+            function(order){
+
+                const element =
+                    document.createElement("div");
+
+                element.className =
+                    "order";
+
+
+                const orderNumber =
+                    order.siparisNo ||
+                    order.siparisKodu ||
+                    order.id;
+
+
+                const durum =
+                    order.durum ||
+                    "Yeni";
+
+
+                let productsHTML = "";
+
+
+                if(
+                    Array.isArray(
+                        order.urunler
+                    ) &&
+                    order.urunler.length > 0
+                ){
+
+                    order.urunler.forEach(
+                        function(product){
+
+                            const adet =
+                                Number(
+                                    product.adet
+                                ) || 0;
+
+                            const fiyat =
+                                Number(
+                                    product.fiyat
+                                ) || 0;
+
+
+                            productsHTML += `
+
+                                <div class="product">
+
+                                    <img
+                                        class="product-image"
+                                        src="${escapeHTML(
+                                            product.resim || ""
+                                        )}"
+                                        alt=""
+                                    >
+
+                                    <div class="product-info">
+
+                                        <div class="product-name">
+                                        ${escapeHTML(
+                                            product.isim ||
+                                            "Ürün"
+                                        )}
+                                        </div>
+
+                                        <div class="product-details">
+
+                                        Beden:
+                                        <strong>
+                                        ${escapeHTML(
+                                            product.beden || "-"
+                                        )}
+                                        </strong>
+
+                                        <br>
+
+                                        Adet:
+                                        <strong>
+                                        ${adet}
+                                        </strong>
+
+                                        <br>
+
+                                        Birim fiyat:
+                                        <strong>
+                                        ${formatMoney(fiyat)}
+                                        </strong>
+
+                                        </div>
+
+                                        <div class="product-price">
+                                        Ürün toplamı:
+                                        ${formatMoney(
+                                            fiyat * adet
+                                        )}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+                    );
+
+                }else{
+
+                    productsHTML =
+                        `<div class="empty">Ürün bilgisi bulunmuyor.</div>`;
+
+                }
+
+
+                element.innerHTML = `
+
+                    <div class="order-header">
+
+                        <div>
+
+                            <div class="order-number">
+                            ${escapeHTML(
+                                orderNumber
+                            )}
+                            </div>
+
+                            <div class="order-date">
+                            ${escapeHTML(
+                                formatDate(
+                                    order.tarih ||
+                                    order.olusturmaTarihi
+                                )
+                            )}
+                            </div>
+
+                        </div>
+
+
+                        <select
+                            class="status-select"
+                            data-id="${escapeHTML(order.id)}"
+                        >
+
+                            <option
+                                value="Yeni"
+                                ${durum === "Yeni" ? "selected" : ""}
+                            >
+                            Yeni
+                            </option>
+
+                            <option
+                                value="Hazırlanıyor"
+                                ${durum === "Hazırlanıyor" ? "selected" : ""}
+                            >
+                            Hazırlanıyor
+                            </option>
+
+                            <option
+                                value="Kargoya Verildi"
+                                ${durum === "Kargoya Verildi" ? "selected" : ""}
+                            >
+                            Kargoya Verildi
+                            </option>
+
+                            <option
+                                value="Teslim Edildi"
+                                ${durum === "Teslim Edildi" ? "selected" : ""}
+                            >
+                            Teslim Edildi
+                            </option>
+
+                            <option
+                                value="İptal"
+                                ${durum === "İptal" ? "selected" : ""}
+                            >
+                            İptal
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="info-grid">
+
+                        <div>
+                            <div class="info-label">
+                            AD SOYAD
+                            </div>
+
+                            <div class="info-value">
+                            ${escapeHTML(
+                                order.isim ||
+                                order.adSoyad ||
+                                "-"
+                            )}
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="info-label">
+                            E-POSTA
+                            </div>
+
+                            <div class="info-value">
+                            ${escapeHTML(
+                                order.email ||
+                                "-"
+                            )}
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="info-label">
+                            TELEFON
+                            </div>
+
+                            <div class="info-value">
+                            ${escapeHTML(
+                                order.telefon ||
+                                "-"
+                            )}
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="info-label">
+                            ADRES
+                            </div>
+
+                            <div class="info-value">
+                            ${escapeHTML(
+                                order.adres ||
+                                "-"
+                            )}
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="info-label">
+                            KARGO
+                            </div>
+
+                            <div class="info-value">
+                            ${
+                                Number(order.kargo) === 0
+                                ? "Kargo Bedava"
+                                : formatMoney(
+                                    Number(order.kargo) || 0
+                                )
+                            }
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="info-label">
+                            SİPARİŞ UID
+                            </div>
+
+                            <div class="info-value">
+                            ${escapeHTML(order.id)}
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="products">
+                    ${productsHTML}
+                    </div>
+
+
+                    <div class="order-total">
+
+                        <div class="total-label">
+                        TOPLAM
+                        </div>
+
+                        <div class="total-value">
+                        ${formatMoney(
+                            Number(order.toplam) || 0
+                        )}
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="delete-button"
+                        data-id="${escapeHTML(order.id)}"
+                    >
+                        SİPARİŞİ SİL
+                    </button>
+
+                `;
+
+
+                ordersElement.appendChild(
+                    element
+                );
+
+            }
+        );
+
+
+        document
+        .querySelectorAll(".status-select")
+        .forEach(
+            function(select){
+
+                select.addEventListener(
+                    "change",
+                    async function(){
+
+                        try{
+
+                            await updateDoc(
+                                doc(
+                                    db,
+                                    "siparisler",
+                                    this.dataset.id
+                                ),
+                                {
+                                    durum:this.value
+                                }
+                            );
+
+                        }catch(error){
+
+                            alert(
+                                "Durum değiştirilemedi:\n" +
+                                error.message
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        document
+        .querySelectorAll(".delete-button")
+        .forEach(
+            function(button){
+
+                button.addEventListener(
+                    "click",
+                    async function(){
+
+                        if(
+                            !confirm(
+                                "Bu siparişi silmek istediğine emin misin?"
+                            )
+                        ){
+
+                            return;
+
+                        }
+
+
+                        try{
+
+                            await deleteDoc(
+                                doc(
+                                    db,
+                                    "siparisler",
+                                    this.dataset.id
+                                )
+                            );
+
+                            await loadOrders();
+
+                        }catch(error){
+
+                            alert(
+                                "Sipariş silinemedi:\n" +
+                                error.message
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        ordersElement.innerHTML = `
+
+            <div class="error">
+
+            Siparişler okunamadı.
+
+            <br><br>
+
+            ${escapeHTML(
+                error.code ||
+                error.message
+            )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   TARİH
+========================= */
+
+function formatDate(value){
+
+    if(!value){
+        return "-";
+    }
+
+    try{
+
+        if(
+            typeof value.toDate ===
+            "function"
+        ){
+
+            return value
+                .toDate()
+                .toLocaleString("tr-TR");
+
+        }
+
+        const date =
+            new Date(value);
+
+        if(
+            isNaN(
+                date.getTime()
+            )
+        ){
+
+            return "-";
+
+        }
+
+        return date.toLocaleString("tr-TR");
+
+    }catch(error){
+
+        return "-";
+
+    }
+
+}
+
+
+/* =========================
+   PARA
+========================= */
+
+function formatMoney(value){
+
+    return (
+        Number(value) || 0
+    ).toLocaleString(
+        "tr-TR",
+        {
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        }
+    ) + " TL";
+
+}
+
+
+/* =========================
+   HTML GÜVENLİĞİ
+========================= */
+
+function escapeHTML(value){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        String(value);
+
+    return div.innerHTML;
+
+}
+
+</script>
+
+</body>
+  </html>
