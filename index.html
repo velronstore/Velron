@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>VELRON</title>
 
-
 <style>
-
-/* =========================
-   GENEL
-========================= */
 
 *{
     margin:0;
@@ -189,7 +181,7 @@ body.lock{
 
 
 /* =========================
-   OVERLAY
+   SIDE MENU
 ========================= */
 
 .overlay{
@@ -209,17 +201,12 @@ body.lock{
     visibility:visible;
 }
 
-
-/* =========================
-   SIDE MENU
-========================= */
-
 .side-menu{
     position:fixed;
     top:0;
     left:0;
     width:40vw;
-    height:100dvh;
+    height:100vh;
     background:#080808;
     transform:translateX(-100%);
     transition:.25s ease;
@@ -362,6 +349,9 @@ body.lock{
 .product img{
     width:100%;
     display:block;
+
+    /* RENKLERİ BİRAZ DAHA CANLI YAPAR */
+    filter:saturate(1.18) contrast(1.08);
 }
 
 .product h3{
@@ -393,45 +383,29 @@ body.lock{
     position:fixed;
     top:0;
     right:0;
-
     width:40vw;
     min-width:300px;
     max-width:430px;
-
-    height:100dvh;
-    max-height:100dvh;
-
+    height:100vh;
     background:#080808;
-
     transform:translateX(100%);
     transition:.3s ease;
-
     z-index:2000;
-
     display:flex;
     flex-direction:column;
-
-    overflow:hidden;
 }
 
 .cart.active{
     transform:translateX(0);
 }
 
-
-/* CART HEADER */
-
 .cart-head{
     height:58px;
-    min-height:58px;
     flex-shrink:0;
-
     border-bottom:1px solid #292929;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     padding:0 17px;
 }
 
@@ -449,18 +423,10 @@ body.lock{
     cursor:pointer;
 }
 
-
-/* CART LIST */
-
 .cart-list{
     flex:1;
-    min-height:0;
-
     overflow-y:auto;
-
     padding:12px;
-
-    -webkit-overflow-scrolling:touch;
 }
 
 .empty{
@@ -470,15 +436,10 @@ body.lock{
     padding-top:50px;
 }
 
-
-/* CART ITEM */
-
 .cart-item{
     display:flex;
     gap:8px;
-
     border-bottom:1px solid #252525;
-
     padding-bottom:12px;
     margin-bottom:12px;
 }
@@ -486,12 +447,11 @@ body.lock{
 .cart-image{
     width:42px;
     height:60px;
-
     object-fit:contain;
-
     background:#111;
 
-    flex-shrink:0;
+    /* SEPETTEKİ FOTOĞRAFI KOYULAŞTIRIR */
+    filter:brightness(0.62) saturate(1.12) contrast(1.12);
 }
 
 .cart-info{
@@ -552,26 +512,17 @@ body.lock{
     cursor:pointer;
 }
 
-
-/* CART FOOTER */
-
 .cart-footer{
     flex-shrink:0;
-
     border-top:1px solid #292929;
-
-    padding:10px 13px;
-
-    background:#080808;
+    padding:13px;
 }
 
 .line{
     display:flex;
     justify-content:space-between;
-
     font-size:10px;
-
-    margin-bottom:7px;
+    margin-bottom:8px;
 }
 
 .line span:first-child{
@@ -580,32 +531,24 @@ body.lock{
 
 .total{
     border-top:1px solid #292929;
-
-    padding-top:8px;
-    margin-top:4px;
-
+    padding-top:10px;
+    margin-top:5px;
     display:flex;
     justify-content:space-between;
-
     font-size:12px;
     font-weight:bold;
 }
 
 .checkout{
     width:100%;
-    height:38px;
-
-    margin-top:9px;
-
+    height:42px;
+    margin-top:12px;
     border:none;
-
     background:#fff;
     color:#000;
-
     font-size:10px;
     font-weight:bold;
     letter-spacing:1px;
-
     cursor:pointer;
 }
 
@@ -616,9 +559,7 @@ body.lock{
 
 .footer{
     border-top:1px solid #222;
-
     padding:35px 25px 25px;
-
     display:flex;
     justify-content:space-between;
 }
@@ -652,9 +593,7 @@ body.lock{
 
 .footer-logo{
     color:#555;
-
     font-family:Georgia,"Times New Roman",serif;
-
     font-size:11px;
     letter-spacing:4px;
 }
@@ -674,9 +613,6 @@ body.lock{
     .cart{
         width:40vw;
         min-width:0;
-        max-width:none;
-        height:100dvh;
-        max-height:100dvh;
     }
 
     .user-name{
@@ -687,49 +623,9 @@ body.lock{
         font-size:10px;
     }
 
-    .cart-footer{
-        padding:9px 10px;
-    }
-
-    .checkout{
-        height:38px;
-        margin-top:8px;
-    }
-
-}
-
-
-/* ÇOK KÜÇÜK EKRANLAR */
-
-@media(max-height:650px){
-
-    .cart-head{
-        height:50px;
-        min-height:50px;
-    }
-
-    .cart-footer{
-        padding:7px 10px;
-    }
-
-    .line{
-        margin-bottom:4px;
-    }
-
-    .total{
-        padding-top:6px;
-        margin-top:2px;
-    }
-
-    .checkout{
-        height:34px;
-        margin-top:6px;
-    }
-
 }
 
 </style>
-
 </head>
 
 
@@ -741,7 +637,6 @@ body.lock{
 ========================= -->
 
 <header class="header">
-
 
 <button
     class="menu-button"
@@ -757,61 +652,57 @@ body.lock{
 
 
 <div class="logo">
-
     VELRON
-
 </div>
 
 
 <div class="icons">
 
+    <button
+        class="icon"
+        id="searchButton"
+        type="button"
+    >
 
-<button
-    class="icon"
-    id="searchButton"
-    type="button"
->
+        <svg viewBox="0 0 24 24">
 
-    <svg viewBox="0 0 24 24">
+            <circle
+                cx="10.8"
+                cy="10.8"
+                r="6.5"
+            ></circle>
 
-        <circle
-            cx="10.8"
-            cy="10.8"
-            r="6.5"
-        ></circle>
+            <line
+                x1="16"
+                y1="16"
+                x2="21"
+                y2="21"
+            ></line>
 
-        <line
-            x1="16"
-            y1="16"
-            x2="21"
-            y2="21"
-        ></line>
+        </svg>
 
-    </svg>
-
-</button>
+    </button>
 
 
-<button
-    class="icon"
-    id="cartButton"
-    type="button"
->
+    <button
+        class="icon"
+        id="cartButton"
+        type="button"
+    >
 
-    <svg viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
 
-        <path
-            d="M5 8h14l-1 12H6L5 8z"
-        ></path>
+            <path
+                d="M5 8h14l-1 12H6L5 8z"
+            ></path>
 
-        <path
-            d="M9 8V6a3 3 0 0 1 6 0v2"
-        ></path>
+            <path
+                d="M9 8V6a3 3 0 0 1 6 0v2"
+            ></path>
 
-    </svg>
+        </svg>
 
-</button>
-
+    </button>
 
 </div>
 
@@ -827,17 +718,13 @@ body.lock{
     id="search"
 >
 
-
 <button
     class="search-close"
     id="searchClose"
     type="button"
 >
-
     ×
-
 </button>
-
 
 <input
     id="searchInput"
@@ -853,18 +740,17 @@ body.lock{
     id="searchResults"
 >
 
-    <div
-        class="search-title"
-        id="searchTitle"
-    >
-        Tüm ürünler
-    </div>
+<div
+    class="search-title"
+    id="searchTitle"
+>
+    Tüm ürünler
+</div>
 
-
-    <div
-        class="search-grid"
-        id="searchGrid"
-    ></div>
+<div
+    class="search-grid"
+    id="searchGrid"
+></div>
 
 </div>
 
@@ -884,7 +770,6 @@ body.lock{
     id="sideMenu"
 >
 
-
 <div
     class="user-name"
     id="userName"
@@ -893,96 +778,85 @@ body.lock{
 
 <div class="menu-section">
 
-
-<a
-    href="giris.html"
-    id="loginLink"
->
-    Giriş Yap
-</a>
-
-
-<a
-    href="kayit.html"
-    id="registerLink"
->
-    Kaydol
-</a>
+    <a
+        href="giris.html"
+        id="loginLink"
+    >
+        Giriş Yap
+    </a>
 
 
-<a
-    href="hesabim.html"
-    id="accountLink"
-    style="display:none;"
->
-    Hesabım
-</a>
+    <a
+        href="kayit.html"
+        id="registerLink"
+    >
+        Kaydol
+    </a>
 
 
-<a
-    href="siparislerim.html"
-    id="ordersLink"
-    style="display:none;"
->
-    Siparişlerim
-</a>
+    <a
+        href="hesabim.html"
+        id="accountLink"
+        style="display:none;"
+    >
+        Hesabım
+    </a>
 
 
-<a
-    href="#"
-    id="logoutLink"
-    style="display:none;"
->
-    Çıkış Yap
-</a>
+    <a
+        href="siparislerim.html"
+        id="ordersLink"
+        style="display:none;"
+    >
+        Siparişlerim
+    </a>
 
+
+    <a
+        href="#"
+        id="logoutLink"
+        style="display:none;"
+    >
+        Çıkış Yap
+    </a>
 
 </div>
 
 
 <div class="menu-section">
 
+    <a href="#tisort">
+        Tişört
+    </a>
 
-<a href="#tisort">
-    Tişört
-</a>
+    <a href="#">
+        Şapka
+    </a>
 
+    <a href="#">
+        Atkı
+    </a>
 
-<a href="#">
-    Şapka
-</a>
-
-
-<a href="#">
-    Atkı
-</a>
-
-
-<a href="#">
-    Sweatshirt
-</a>
-
+    <a href="#">
+        Sweatshirt
+    </a>
 
 </div>
 
 
 <div>
 
+    <a href="favoriler.html">
+        Favoriler
+    </a>
 
-<a href="favoriler.html">
-    Favoriler
-</a>
+    <a href="#iletisim">
+        İletişim
+    </a>
 
-
-<a href="#iletisim">
-    İletişim
-</a>
-
-
-<a href="#">
-    Hakkımızda
-</a>
-
+    <a href="#">
+        Hakkımızda
+    </a>
 
 </div>
 
@@ -1004,23 +878,19 @@ body.lock{
     id="cart"
 >
 
-
 <div class="cart-head">
 
+    <span>
+        SEPET
+    </span>
 
-<span>
-    SEPET
-</span>
-
-
-<button
-    class="cart-close"
-    id="cartClose"
-    type="button"
->
-    ×
-</button>
-
+    <button
+        class="cart-close"
+        id="cartClose"
+        type="button"
+    >
+        ×
+    </button>
 
 </div>
 
@@ -1033,54 +903,52 @@ body.lock{
 
 <div class="cart-footer">
 
+    <div class="line">
 
-<div class="line">
+        <span>
+            Ara toplam
+        </span>
 
-    <span>
-        Ara toplam
-    </span>
+        <span id="subtotal">
+            0 TL
+        </span>
 
-    <span id="subtotal">
-        0 TL
-    </span>
-
-</div>
-
-
-<div class="line">
-
-    <span>
-        Kargo
-    </span>
-
-    <span id="shipping">
-        0 TL
-    </span>
-
-</div>
+    </div>
 
 
-<div class="total">
+    <div class="line">
 
-    <span>
-        TOPLAM
-    </span>
+        <span>
+            Kargo
+        </span>
 
-    <span id="total">
-        0 TL
-    </span>
+        <span id="shipping">
+            0 TL
+        </span>
 
-</div>
+    </div>
 
 
-<button
-    class="checkout"
-    id="checkoutButton"
-    type="button"
->
-    SİPARİŞ VER
-</button>
+    <div class="total">
 
+        <span>
+            TOPLAM
+        </span>
+
+        <span id="total">
+            0 TL
+        </span>
+
+    </div>
+
+
+    <button
+        class="checkout"
+        id="checkoutButton"
+        type="button"
+    >
+        SİPARİŞ VER
+    </button>
 
 </div>
 
@@ -1093,62 +961,50 @@ body.lock{
 
 <section class="hero">
 
-
 <div
     class="slider"
     id="slider"
 >
 
+    <img
+        class="slide"
+        src="manken.jpg"
+        alt="VELRON"
+    >
 
-<img
-    class="slide"
-    src="manken.jpg"
-    alt="VELRON"
->
+    <img
+        class="slide"
+        src="manken2.png"
+        alt="VELRON"
+    >
 
-
-<img
-    class="slide"
-    src="manken2.png"
-    alt="VELRON"
->
-
-
-<img
-    class="slide"
-    src="manken3.png"
-    alt="VELRON"
->
-
+    <img
+        class="slide"
+        src="manken3.png"
+        alt="VELRON"
+    >
 
 </div>
 
 
 <div class="hero-text">
 
+    <h1>
+        VELRON
+    </h1>
 
-<h1>
-    VELRON
-</h1>
-
-
-<p>
-    Sıradanlıktan uzak
-</p>
-
+    <p>
+        Sıradanlıktan uzak
+    </p>
 
 </div>
 
 
 <div class="dots">
 
-
-<span class="dot active"></span>
-
-<span class="dot"></span>
-
-<span class="dot"></span>
-
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
 
 </div>
 
@@ -1164,7 +1020,6 @@ body.lock{
     id="tisort"
 >
 
-
 <div class="main-title">
     TİŞÖRT
 </div>
@@ -1178,105 +1033,88 @@ body.lock{
 <div class="product-scroll">
 
 
-<div
-    class="product"
-    data-page="urun-detay.html"
->
+    <div
+        class="product"
+        data-page="urun-detay.html"
+    >
+
+        <img
+            src="tiger.png"
+            alt="Tiger Tasarımlı Siyah Tişört"
+        >
+
+        <h3>
+            Tiger Tasarımlı Siyah Tişört
+        </h3>
+
+        <p>
+            499 TL
+        </p>
+
+    </div>
 
 
-<img
-    src="tiger.png"
-    alt="Tiger Tasarımlı Siyah Tişört"
->
+    <div
+        class="product"
+        data-page="urun-aslan.html"
+    >
+
+        <img
+            src="aslan.png"
+            alt="Aslan Tasarımlı Siyah Tişört"
+        >
+
+        <h3>
+            Aslan Tasarımlı Siyah Tişört
+        </h3>
+
+        <p>
+            499 TL
+        </p>
+
+    </div>
 
 
-<h3>
-    Tiger Tasarımlı Siyah Tişört
-</h3>
+    <div
+        class="product"
+        data-page="urun-darkdevil.html"
+    >
+
+        <img
+            src="darkdevil.png"
+            alt="Dark Devil Tasarımlı Siyah Tişört"
+        >
+
+        <h3>
+            Dark Devil Tasarımlı Siyah Tişört
+        </h3>
+
+        <p>
+            499 TL
+        </p>
+
+    </div>
 
 
-<p>
-    499 TL
-</p>
+    <div
+        class="product"
+        data-page="urun-kurukafa.html"
+    >
 
+        <img
+            src="kurukafa.png"
+            alt="Kurukafa Tasarımlı Siyah Tişört"
+        >
 
-</div>
+        <h3>
+            Kurukafa Tasarımlı Siyah Tişört
+        </h3>
 
+        <p>
+            499 TL
+        </p>
 
-<div
-    class="product"
-    data-page="urun-aslan.html"
->
-
-
-<img
-    src="aslan.png"
-    alt="Aslan Tasarımlı Siyah Tişört"
->
-
-
-<h3>
-    Aslan Tasarımlı Siyah Tişört
-</h3>
-
-
-<p>
-    499 TL
-</p>
-
-
-</div>
-
-
-<div
-    class="product"
-    data-page="urun-darkdevil.html"
->
-
-
-<img
-    src="darkdevil.png"
-    alt="Dark Devil Tasarımlı Siyah Tişört"
->
-
-
-<h3>
-    Dark Devil Tasarımlı Siyah Tişört
-</h3>
-
-
-<p>
-    499 TL
-</p>
-
-
-</div>
-
-
-<div
-    class="product"
-    data-page="urun-kurukafa.html"
->
-
-
-<img
-    src="kurukafa.png"
-    alt="Kurukafa Tasarımlı Siyah Tişört"
->
-
-
-<h3>
-    Kurukafa Tasarımlı Siyah Tişört
-</h3>
-
-
-<p>
-    499 TL
-</p>
-
-
-</div>
-
+    </div>
 
 </div>
 
@@ -1292,105 +1130,88 @@ body.lock{
 <div class="product-scroll">
 
 
-<div
-    class="product"
-    data-page="urun-monza.html"
->
+    <div
+        class="product"
+        data-page="urun-monza.html"
+    >
+
+        <img
+            src="monza.png"
+            alt="Monza Tasarımlı Beyaz Tişört"
+        >
+
+        <h3>
+            Monza Tasarımlı Beyaz Tişört
+        </h3>
+
+        <p>
+            499 TL
+        </p>
+
+    </div>
 
 
-<img
-    src="monza.png"
-    alt="Monza Tasarımlı Beyaz Tişört"
->
+    <div
+        class="product"
+        data-page="urun-voltage.html"
+    >
+
+        <img
+            src="voltage.png"
+            alt="Voltage Tasarımlı Beyaz Tişört"
+        >
+
+        <h3>
+            Voltage Tasarımlı Beyaz Tişört
+        </h3>
+
+        <p>
+            499 TL
+        </p>
+
+    </div>
 
 
-<h3>
-    Monza Tasarımlı Beyaz Tişört
-</h3>
+    <div
+        class="product"
+        data-page="urun-porsche.html"
+    >
+
+        <img
+            src="porsche.png"
+            alt="Porsche Tasarımlı Beyaz Tişört"
+        >
+
+        <h3>
+            Porsche Tasarımlı Beyaz Tişört
+        </h3>
+
+        <p>
+            499 TL
+        </p>
+
+    </div>
 
 
-<p>
-    499 TL
-</p>
+    <div
+        class="product"
+        data-page="urun-velron.html"
+    >
 
+        <img
+            src="velron.png"
+            alt="Velron Tasarımlı Beyaz Tişört"
+        >
 
-</div>
+        <h3>
+            Velron Tasarımlı Beyaz Tişört
+        </h3>
 
+        <p>
+            499 TL
+        </p>
 
-<div
-    class="product"
-    data-page="urun-voltage.html"
->
-
-
-<img
-    src="voltage.png"
-    alt="Voltage Tasarımlı Beyaz Tişört"
->
-
-
-<h3>
-    Voltage Tasarımlı Beyaz Tişört
-</h3>
-
-
-<p>
-    499 TL
-</p>
-
-
-</div>
-
-
-<div
-    class="product"
-    data-page="urun-porsche.html"
->
-
-
-<img
-    src="porsche.png"
-    alt="Porsche Tasarımlı Beyaz Tişört"
->
-
-
-<h3>
-    Porsche Tasarımlı Beyaz Tişört
-</h3>
-
-
-<p>
-    499 TL
-</p>
-
-
-</div>
-
-
-<div
-    class="product"
-    data-page="urun-velron.html"
->
-
-
-<img
-    src="velron.png"
-    alt="Velron Tasarımlı Beyaz Tişört"
->
-
-
-<h3>
-    Velron Tasarımlı Beyaz Tişört
-</h3>
-
-
-<p>
-    499 TL
-</p>
-
-
-</div>
-
+    </div>
 
 </div>
 
@@ -1403,79 +1224,63 @@ body.lock{
 
 <footer id="iletisim">
 
-
 <div class="footer">
 
+    <div class="footer-column">
 
-<div class="footer-column">
+        <div class="footer-title">
+            İLETİŞİM
+        </div>
 
+        <div class="footer-item">
 
-<div class="footer-title">
-    İLETİŞİM
-</div>
+            <a href="mailto:storevelron@gmail.com">
+                storevelron@gmail.com
+            </a>
 
+        </div>
 
-<div class="footer-item">
-
-
-<a href="mailto:storevelron@gmail.com">
-    storevelron@gmail.com
-</a>
-
-
-</div>
-
-</div>
+    </div>
 
 
-<div class="footer-column">
+    <div class="footer-column">
 
+        <div class="footer-title">
+            SOSYAL MEDYA
+        </div>
 
-<div class="footer-title">
-    SOSYAL MEDYA
-</div>
+        <div class="footer-item">
 
+            <a
+                href="https://instagram.com/velron_store"
+                target="_blank"
+            >
+                Instagram: velron_store
+            </a>
 
-<div class="footer-item">
+        </div>
 
+        <div class="footer-item">
 
-<a
-    href="https://instagram.com/velron_store"
-    target="_blank"
->
-    Instagram: velron_store
-</a>
+            <a
+                href="https://www.tiktok.com/@velron.store"
+                target="_blank"
+            >
+                TikTok: velron.store
+            </a>
 
+        </div>
 
-</div>
-
-
-<div class="footer-item">
-
-
-<a
-    href="https://www.tiktok.com/@velron.store"
-    target="_blank"
->
-    TikTok: velron.store
-</a>
-
-
-</div>
-
-</div>
-
+    </div>
 
 </div>
 
 
 <div class="footer-bottom">
 
-
-<div class="footer-logo">
-    VELRON
-</div>
-
+    <div class="footer-logo">
+        VELRON
+    </div>
 
 </div>
 
@@ -1487,7 +1292,6 @@ body.lock{
 ========================= -->
 
 <script type="module">
-
 
 import {
     initializeApp
@@ -1673,7 +1477,6 @@ const menuOverlay =
 function openMenu(){
 
     closeCart();
-
     closeSearch();
 
     sideMenu.classList.add("active");
@@ -1839,7 +1642,6 @@ function normalize(text){
 function openSearch(){
 
     closeMenu();
-
     closeCart();
 
     search.classList.add("active");
@@ -2035,7 +1837,6 @@ function saveCart(items){
 function openCart(){
 
     closeMenu();
-
     closeSearch();
 
     cart.classList.add("active");
@@ -2122,39 +1923,6 @@ function calculateShipping(
 
 
 /* =========================
-   CART IMAGE MAP
-========================= */
-
-const cartImageMap = {
-
-    "Tiger Tasarımlı Siyah Tişört":
-        "tiger.png",
-
-    "Aslan Tasarımlı Siyah Tişört":
-        "aslan.png",
-
-    "Dark Devil Tasarımlı Siyah Tişört":
-        "darkdevil.png",
-
-    "Kurukafa Tasarımlı Siyah Tişört":
-        "kurukafa.png",
-
-    "Monza Tasarımlı Beyaz Tişört":
-        "monza.png",
-
-    "Voltage Tasarımlı Beyaz Tişört":
-        "voltage.png",
-
-    "Porsche Tasarımlı Beyaz Tişört":
-        "porsche.png",
-
-    "Velron Tasarımlı Beyaz Tişört":
-        "velron.png"
-
-};
-
-
-/* =========================
    RENDER CART
 ========================= */
 
@@ -2216,17 +1984,6 @@ function renderCart(){
                 count;
 
 
-            /*
-                ÜRÜN ADINA GÖRE DOĞRU
-                FOTOĞRAFI ALIYORUZ.
-            */
-
-            const cartImage =
-                cartImageMap[item.name] ||
-                item.image ||
-                "";
-
-
             const element =
                 document.createElement("div");
 
@@ -2239,8 +1996,8 @@ function renderCart(){
 
                 <img
                     class="cart-image"
-                    src="${cartImage}"
-                    alt="${item.name || "Ürün"}"
+                    src="${item.image || ""}"
+                    alt=""
                 >
 
                 <div class="cart-info">
@@ -2420,10 +2177,6 @@ function changeQuantity(
 
 }
 
-
-/* =========================
-   REMOVE
-========================= */
 
 function removeItem(index){
 
@@ -2738,7 +2491,5 @@ renderCart();
 
 </script>
 
-
 </body>
-
 </html>
