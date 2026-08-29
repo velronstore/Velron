@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Ödeme - VELRON</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:#000;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    padding:25px 20px 50px;
+}
+
+.back{
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+.logo{
+    text-align:center;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:22px;
+    font-weight:bold;
+    letter-spacing:6px;
+    margin-bottom:35px;
+}
+
+.title{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#777;
+    font-size:12px;
+    margin-bottom:25px;
+}
+
+.section{
+    background:#080808;
+    border:1px solid #292929;
+    padding:18px;
+    margin-bottom:15px;
+}
+
+.section-title{
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom:15px;
+}
+
+.input-group{
+    margin-bottom:13px;
+}
+
+.input-group:last-child{
+    margin-bottom:0;
+}
+
+label{
+    display:block;
+    color:#aaa;
+    font-size:10px;
+    margin-bottom:6px;
+}
+
+input,
+textarea{
+    width:100%;
+    background:#111;
+    border:1px solid #333;
+    color:#fff;
+    outline:none;
+    padding:12px;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+}
+
+input{
+    height:44px;
+}
+
+textarea{
+    min-height:85px;
+    resize:vertical;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#777;
+}
+
+.cart-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.cart-item{
+    display:flex;
+    gap:12px;
+    border-bottom:1px solid #222;
+    padding-bottom:14px;
+}
+
+.cart-item:last-child{
+    border-bottom:none;
+    padding-bottom:0;
+}
+
+.cart-image{
+    width:70px;
+    height:85px;
+    object-fit:contain;
+    background:#111;
+    flex-shrink:0;
+}
+
+.cart-info{
+    flex:1;
+    min-width:0;
+}
+
+.cart-name{
+    font-size:12px;
+    line-height:1.4;
+}
+
+.cart-details{
+    color:#888;
+    font-size:10px;
+    margin-top:7px;
+    line-height:1.7;
+}
+
+.cart-details strong{
+    color:#fff;
+}
+
+.cart-price{
+    font-size:11px;
+    margin-top:7px;
+}
+
+.empty{
+    color:#777;
+    text-align:center;
+    font-size:12px;
+    padding:15px 0;
+}
+
+.payment-info{
+    border:1px solid #333;
+    padding:14px;
+    background:#050505;
+}
+
+.payment-row{
+    margin-bottom:12px;
+}
+
+.payment-row:last-child{
+    margin-bottom:0;
+}
+
+.payment-label{
+    color:#777;
+    font-size:9px;
+    margin-bottom:5px;
+}
+
+.payment-value{
+    color:#fff;
+    font-size:12px;
+    word-break:break-all;
+}
+
+.warning{
+    color:#888;
+    font-size:10px;
+    line-height:1.6;
+    margin-top:12px;
+}
+
+.total-line{
+    display:flex;
+    justify-content:space-between;
+    color:#999;
+    font-size:11px;
+    margin-bottom:10px;
+}
+
+.total-line strong{
+    color:#fff;
+}
+
+.total{
+    border-top:1px solid #333;
+    padding-top:13px;
+    margin-top:13px;
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.order-button{
+    width:100%;
+    height:50px;
+    background:#fff;
+    color:#000;
+    border:none;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+    cursor:pointer;
+}
+
+.order-button:active{
+    opacity:.7;
+}
+
+.order-button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.message{
+    display:none;
+    text-align:center;
+    font-size:11px;
+    line-height:1.6;
+    margin-top:15px;
+}
+
+.success{
+    color:#7cff7c;
+}
+
+.error{
+    color:#ff5555;
+}
+
+.order-number{
+    display:none;
+    text-align:center;
+    margin-top:12px;
+    padding:15px;
+    border:1px solid #333;
+    background:#080808;
+}
+
+.order-number span{
+    display:block;
+    color:#777;
+    font-size:9px;
+    margin-bottom:6px;
+}
+
+.order-number strong{
+    font-size:16px;
+    letter-spacing:2px;
+}
+
+@media(max-width:500px){
+
+    .container{
+        padding:20px 15px 40px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<main class="container">
+
+
+<a
+href="index.html"
+class="back"
+>
+    ‹
+</a>
+
+
+<div class="logo">
+    VELRON
+</div>
+
+
+<h1 class="title">
+    Sipariş Ver
+</h1>
+
+
+<p class="subtitle">
+    Bilgilerini gir ve siparişini oluştur.
+</p>
+
+
+<section class="section">
+
+<div class="section-title">
+    TESLİMAT BİLGİLERİ
+</div>
+
+
+<div class="input-group">
+
+<label>
+    AD SOYAD
+</label>
+
+<input
+id="name"
+type="text"
+placeholder="Adın ve soyadın"
+autocomplete="name"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+    TELEFON
+</label>
+
+<input
+id="phone"
+type="tel"
+placeholder="05XX XXX XX XX"
+autocomplete="tel"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+    ADRES
+</label>
+
+<textarea
+id="address"
+placeholder="Açık adresin"
+autocomplete="street-address"
+></textarea>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+    SİPARİŞİN
+</div>
+
+
+<div
+class="cart-list"
+id="cartList"
+></div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+    HAVALE / EFT
+</div>
+
+
+<div class="payment-info">
+
+
+<div class="payment-row">
+
+<div class="payment-label">
+    HESAP SAHİBİ
+</div>
+
+<div
+class="payment-value"
+id="accountName"
+>
+HESAP SAHİBİ
+</div>
+
+</div>
+
+
+<div class="payment-row">
+
+<div class="payment-label">
+    IBAN
+</div>
+
+<div
+class="payment-value"
+id="iban"
+>
+TR00 0000 0000 0000 0000 0000 0000 00
+</div>
+
+</div>
+
+
+</div>
+
+
+<p class="warning">
+
+Siparişini oluşturduktan sonra yukarıdaki
+hesaba toplam tutarı havale/EFT olarak gönder.
+
+<br><br>
+
+Açıklama kısmına sipariş numaranı yaz.
+
+</p>
+
+</section>
+
+
+<section class="section">
+
+
+<div class="total-line">
+
+<span>
+    Ara toplam
+</span>
+
+<strong id="subtotal">
+    0 TL
+</strong>
+
+</div>
+
+
+<div class="total-line">
+
+<span>
+    Kargo
+</span>
+
+<strong id="shipping">
+    0 TL
+</strong>
+
+</div>
+
+
+<div class="total">
+
+<span>
+    TOPLAM
+</span>
+
+<span id="total">
+    0 TL
+</span>
+
+</div>
+
+</section>
+
+
+<button
+class="order-button"
+id="orderButton"
+type="button"
+>
+SİPARİŞİ OLUŞTUR
+</button>
+
+
+<div
+class="message"
+id="message"
+></div>
+
+
+<div
+class="order-number"
+id="orderNumber"
+>
+
+<span>
+    SİPARİŞ NUMARAN
+</span>
+
+<strong id="orderNumberValue">
+    -
+</strong>
+
+</div>
+
+
+</main>
+
+
+<script type="module">
+
+
+/* =====================================
+   FIREBASE
+===================================== */
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    addDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =====================================
+   FIREBASE AYARLARI
+===================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyD8osmrzNWj32T-1kNx-jmHlWcAm5_7xeg",
+
+    authDomain:
+        "velron-831db.firebaseapp.com",
+
+    projectId:
+        "velron-831db",
+
+    storageBucket:
+        "velron-831db.firebasestorage.app",
+
+    messagingSenderId:
+        "622435814773",
+
+    appId:
+        "1:622435814773:web:bd94aff51e78ba2a7c573c",
+
+    measurementId:
+        "G-74XHVN6V22"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================
+   AYARLAR
+===================================== */
+
+const CART_KEY =
+    "velron_cart";
+
+
+const ACCOUNT_NAME =
+    "Betül Sena Türeli";
+
+
+const IBAN =
+    "TR080006701000000037244947";
+
+
+document.getElementById(
+    "accountName"
+).textContent =
+    ACCOUNT_NAME;
+
+
+document.getElementById(
+    "iban"
+).textContent =
+    IBAN;
+
+
+/* =====================================
+   GİRİŞ KONTROLÜ
+===================================== */
+
+let currentUser = null;
+
+
+onAuthStateChanged(
+    auth,
+    function(user){
+
+        if(!user){
+
+            window.location.href =
+                "giris.html";
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+    }
+);
+
+
+/* =====================================
+   SEPET
+===================================== */
+
+function getCart(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                CART_KEY
+            )
+        ) || [];
+
+    }catch(error){
+
+        console.error(error);
+
+        return [];
+
+    }
+
+}
+
+
+const cart =
+    getCart();
+
+
+const cartList =
+    document.getElementById(
+        "cartList"
+    );
+
+
+const subtotalElement =
+    document.getElementById(
+        "subtotal"
+    );
+
+
+const shippingElement =
+    document.getElementById(
+        "shipping"
+    );
+
+
+const totalElement =
+    document.getElementById(
+        "total"
+    );
+
+
+let subtotal = 0;
+
+let totalQuantity = 0;
+
+let shipping = 50;
+
+
+/* =====================================
+   SİPARİŞİ GÖSTER
+===================================== */
+
+function renderOrder(){
+
+    cartList.innerHTML = "";
+
+    subtotal = 0;
+
+    totalQuantity = 0;
+
+
+    if(cart.length === 0){
+
+        cartList.innerHTML = `
+
+            <div class="empty">
+                Sepetin boş.
+            </div>
+
+        `;
+
+
+        subtotalElement.textContent =
+            "0 TL";
+
+        shippingElement.textContent =
+            "0 TL";
+
+        totalElement.textContent =
+            "0 TL";
+
+        return;
+
+    }
+
+
+    cart.forEach(
+        function(item){
+
+            const quantity =
+                Number(
+                    item.quantity
+                ) || 1;
+
+
+            const price =
+                Number(
+                    item.price
+                ) || 0;
+
+
+            subtotal +=
+                price * quantity;
+
+
+            totalQuantity +=
+                quantity;
+
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "cart-item";
+
+
+            element.innerHTML = `
+
+                <img
+                    class="cart-image"
+                    src="${escapeHTML(
+                        item.image || ""
+                    )}"
+                    alt=""
+                >
+
+                <div class="cart-info">
+
+                    <div class="cart-name">
+
+                        ${escapeHTML(
+                            item.name || "Ürün"
+                        )}
+
+                    </div>
+
+
+                    <div class="cart-details">
+
+                        Beden:
+                        <strong>
+                            ${escapeHTML(
+                                item.size || "-"
+                            )}
+                        </strong>
+
+                        <br>
+
+                        Adet:
+                        <strong>
+                            ${quantity}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="cart-price">
+
+                        ${price * quantity} TL
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            cartList.appendChild(
+                element
+            );
+
+        }
+    );
+
+
+    let allTshirts = true;
+
+
+    cart.forEach(
+        function(item){
+
+            if(
+                item.category &&
+                item.category !== "tisort"
+            ){
+
+                allTshirts = false;
+
+            }
+
+        }
+    );
+
+
+    if(
+        allTshirts &&
+        totalQuantity >= 2
+    ){
+
+        shipping = 0;
+
+    }else{
+
+        shipping = 50;
+
+    }
+
+
+    subtotalElement.textContent =
+        subtotal + " TL";
+
+
+    shippingElement.textContent =
+        shipping === 0
+        ? "Kargo Bedava"
+        : shipping + " TL";
+
+
+    totalElement.textContent =
+        (
+            subtotal +
+            shipping
+        ) + " TL";
+
+}
+
+
+renderOrder();
+
+
+/* =====================================
+   SİPARİŞ OLUŞTUR
+===================================== */
+
+const orderButton =
+    document.getElementById(
+        "orderButton"
+    );
+
+
+orderButton.addEventListener(
+    "click",
+    async function(){
+
+        /* Kullanıcı kontrolü */
+
+        if(!currentUser){
+
+            window.location.href =
+                "giris.html";
+
+            return;
+
+        }
+
+
+        const name =
+            document.getElementById(
+                "name"
+            ).value.trim();
+
+
+        const phone =
+            document.getElementById(
+                "phone"
+            ).value.trim();
+
+
+        const address =
+            document.getElementById(
+                "address"
+            ).value.trim();
+
+
+        if(cart.length === 0){
+
+            showMessage(
+                "Sepetin boş.",
+                false
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !name ||
+            !phone ||
+            !address
+        ){
+
+            showMessage(
+                "Lütfen tüm teslimat bilgilerini doldur.",
+                false
+            );
+
+            return;
+
+        }
+
+
+        const orderNumber =
+            createOrderNumber();
+
+
+        orderButton.disabled =
+            true;
+
+
+        orderButton.textContent =
+            "SİPARİŞ KAYDEDİLİYOR...";
+
+
+        try{
+
+
+            /* =====================================
+               FIREBASE'E GİDECEK SİPARİŞ
+            ===================================== */
+
+            const orderData = {
+
+                /* Kullanıcı bilgileri */
+
+                kullaniciId:
+                    currentUser.uid,
+
+
+                email:
+                    currentUser.email || "",
+
+
+                /* Sipariş bilgileri */
+
+                siparisNo:
+                    orderNumber,
+
+
+                isim:
+                    name,
+
+
+                telefon:
+                    phone,
+
+
+                adres:
+                    address,
+
+
+                /* Ürünler */
+
+                urunler:
+
+                    cart.map(
+                        function(item){
+
+                            return {
+
+                                isim:
+                                    item.name || "",
+
+
+                                beden:
+                                    item.size || "",
+
+
+                                adet:
+                                    Number(
+                                        item.quantity
+                                    ) || 1,
+
+
+                                fiyat:
+                                    Number(
+                                        item.price
+                                    ) || 0,
+
+
+                                resim:
+                                    item.image || ""
+
+                            };
+
+                        }
+                    ),
+
+
+                /* Fiyatlar */
+
+                araToplam:
+                    subtotal,
+
+
+                kargo:
+                    shipping,
+
+
+                toplam:
+                    subtotal + shipping,
+
+
+                /* Durum */
+
+                durum:
+                    "Yeni",
+
+
+                /* Tarih */
+
+                tarih:
+                    new Date().toISOString()
+
+            };
+
+
+            /* =====================================
+               FIRESTORE
+            ===================================== */
+
+            const docRef =
+                await addDoc(
+
+                    collection(
+                        db,
+                        "siparisler"
+                    ),
+
+                    orderData
+
+                );
+
+
+            console.log(
+                "Sipariş kaydedildi:",
+                docRef.id
+            );
+
+
+            /* =====================================
+               BAŞARILI
+            ===================================== */
+
+            document.getElementById(
+                "orderNumberValue"
+            ).textContent =
+                orderNumber;
+
+
+            document.getElementById(
+                "orderNumber"
+            ).style.display =
+                "block";
+
+
+            showMessage(
+
+                "Siparişin başarıyla oluşturuldu. Havale/EFT işlemini tamamlamayı unutma.",
+
+                true
+
+            );
+
+
+            /* Sepeti temizle */
+
+            localStorage.removeItem(
+                CART_KEY
+            );
+
+
+            orderButton.textContent =
+                "SİPARİŞ OLUŞTURULDU";
+
+
+            /*
+                Butonu tekrar aktif etmiyoruz.
+                Aynı siparişin iki kere
+                oluşturulmasını engelliyoruz.
+            */
+
+        }catch(error){
+
+            console.error(
+                "Firebase sipariş hatası:",
+                error
+            );
+
+
+            showMessage(
+
+                "Sipariş kaydedilemedi. Lütfen tekrar dene.",
+
+                false
+
+            );
+
+
+            orderButton.disabled =
+                false;
+
+
+            orderButton.textContent =
+                "SİPARİŞİ OLUŞTUR";
+
+        }
+
+    }
+);
+
+
+/* =====================================
+   SİPARİŞ NUMARASI
+===================================== */
+
+function createOrderNumber(){
+
+    const now =
+        Date.now()
+        .toString()
+        .slice(-8);
+
+
+    const random =
+        Math.floor(
+            100 +
+            Math.random() * 900
+        );
+
+
+    return "VEL-" +
+        now +
+        "-" +
+        random;
+
+}
+
+
+/* =====================================
+   MESAJ
+===================================== */
+
+function showMessage(
+    text,
+    success
+){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        success
+        ? "message success"
+        : "message error";
+
+
+    message.style.display =
+        "block";
+
+}
+
+
+/* =====================================
+   HTML GÜVENLİĞİ
+===================================== */
+
+function escapeHTML(value){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        String(value)
+        ;
+
+
+    return div.innerHTML;
+
+}
+
+</script>
+
+</body>
+
+</html>
