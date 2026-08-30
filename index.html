@@ -9,10 +9,59 @@
 content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <meta name="color-scheme" content="dark">
-
 <meta name="theme-color" content="#000000">
 
 <title>VELRON</title>
+
+
+<!-- =========================
+     FOTOĞRAF ÖN YÜKLEME
+========================= -->
+
+<link rel="preload"
+      as="image"
+      href="manken.jpg"
+      fetchpriority="high">
+
+<link rel="preload"
+      as="image"
+      href="manken2.png">
+
+<link rel="preload"
+      as="image"
+      href="manken3.png">
+
+<link rel="preload"
+      as="image"
+      href="tiger.png">
+
+<link rel="preload"
+      as="image"
+      href="aslan.png">
+
+<link rel="preload"
+      as="image"
+      href="darkdevil.png">
+
+<link rel="preload"
+      as="image"
+      href="kurukafa.png">
+
+<link rel="preload"
+      as="image"
+      href="monza.png">
+
+<link rel="preload"
+      as="image"
+      href="voltage.png">
+
+<link rel="preload"
+      as="image"
+      href="porsche.png">
+
+<link rel="preload"
+      as="image"
+      href="velron.png">
 
 
 <style>
@@ -500,6 +549,11 @@ img{
     filter:
         saturate(1.20)
         contrast(1.05);
+
+    display:block;
+
+    /* FOTOĞRAF HEMEN YÜKLENSİN */
+    loading: eager;
 }
 
 .product h3{
@@ -765,7 +819,6 @@ img{
 
 /* =========================
    CART FOOTER
-   SİPARİŞ VER DAİMA ALTTA
 ========================= */
 
 .cart-footer{
@@ -944,15 +997,12 @@ img{
 
     .side-menu{
         width:40vw;
-
         padding:65px 13px 25px;
     }
 
     .cart{
         width:40vw;
-
         min-width:0;
-
         max-width:none;
     }
 
@@ -999,7 +1049,7 @@ img{
 
 
 /* =========================
-   DARK MODE FIX
+   DARK MODE
 ========================= */
 
 @media(prefers-color-scheme:dark){
@@ -1215,7 +1265,6 @@ footer{
 
 <div class="menu-section">
 
-
 <a
     href="giris.html"
     id="loginLink"
@@ -1402,6 +1451,8 @@ footer{
     class="slide"
     src="manken.jpg"
     alt="VELRON"
+    width="1200"
+    height="800"
     fetchpriority="high"
     decoding="async"
 >
@@ -1411,7 +1462,9 @@ footer{
     class="slide"
     src="manken2.png"
     alt="VELRON"
-    loading="lazy"
+    width="1200"
+    height="800"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1420,7 +1473,9 @@ footer{
     class="slide"
     src="manken3.png"
     alt="VELRON"
-    loading="lazy"
+    width="1200"
+    height="800"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1483,7 +1538,7 @@ footer{
 <img
     src="tiger.png"
     alt="Tiger Tasarımlı Siyah Tişört"
-    loading="lazy"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1506,7 +1561,7 @@ footer{
 <img
     src="aslan.png"
     alt="Aslan Tasarımlı Siyah Tişört"
-    loading="lazy"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1529,7 +1584,7 @@ footer{
 <img
     src="darkdevil.png"
     alt="Dark Devil Tasarımlı Siyah Tişört"
-    loading="lazy"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1552,7 +1607,7 @@ footer{
 <img
     src="kurukafa.png"
     alt="Kurukafa Tasarımlı Siyah Tişört"
-    loading="lazy"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1591,7 +1646,7 @@ footer{
 <img
     src="monza.png"
     alt="Monza Tasarımlı Beyaz Tişört"
-    loading="lazy"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1614,7 +1669,7 @@ footer{
 <img
     src="voltage.png"
     alt="Voltage Tasarımlı Beyaz Tişört"
-    loading="lazy"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1637,7 +1692,7 @@ footer{
 <img
     src="porsche.png"
     alt="Porsche Tasarımlı Beyaz Tişört"
-    loading="lazy"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1660,7 +1715,7 @@ footer{
 <img
     src="velron.png"
     alt="Velron Tasarımlı Beyaz Tişört"
-    loading="lazy"
+    fetchpriority="high"
     decoding="async"
 >
 
@@ -1807,7 +1862,6 @@ measurementId:
 const app =
 initializeApp(firebaseConfig);
 
-
 const auth =
 getAuth(app);
 
@@ -1831,7 +1885,6 @@ document.getElementById("ordersLink");
 const logoutLink =
 document.getElementById("logoutLink");
 
-
 let currentUser = null;
 
 
@@ -1840,7 +1893,6 @@ onAuthStateChanged(
     function(user){
 
         currentUser = user;
-
 
         if(user){
 
@@ -1851,7 +1903,6 @@ onAuthStateChanged(
 
             userName.style.display =
                 "block";
-
 
             loginLink.style.display =
                 "none";
@@ -1864,7 +1915,6 @@ onAuthStateChanged(
 
             logoutLink.style.display =
                 "block";
-
 
         }else{
 
@@ -1898,7 +1948,6 @@ logoutLink.addEventListener(
     async function(event){
 
         event.preventDefault();
-
 
         try{
 
@@ -2163,7 +2212,6 @@ function renderSearch(query){
             const item =
                 document.createElement("div");
 
-
             item.className =
                 "search-product";
 
@@ -2173,8 +2221,8 @@ function renderSearch(query){
                 <img
                     src="${product.image}"
                     alt="${product.name}"
-                    loading="lazy"
                     decoding="async"
+                    fetchpriority="high"
                 >
 
                 <h3>
@@ -2352,7 +2400,6 @@ function calculateShipping(
 
     let allTshirts = true;
 
-
     items.forEach(
         function(item){
 
@@ -2393,7 +2440,6 @@ function renderCart(){
     const items =
         getCart();
 
-
     cartList.innerHTML = "";
 
 
@@ -2408,7 +2454,6 @@ function renderCart(){
             </div>
 
         `;
-
 
         subtotal.textContent =
             "0 TL";
@@ -2425,7 +2470,6 @@ function renderCart(){
 
 
     let sum = 0;
-
     let quantity = 0;
 
 
@@ -2460,8 +2504,8 @@ function renderCart(){
                     class="cart-image"
                     src="${item.image || ""}"
                     alt=""
-                    loading="eager"
                     decoding="async"
+                    fetchpriority="high"
                 >
 
                 <div class="cart-info">
@@ -2501,7 +2545,6 @@ function renderCart(){
                             </button>
 
                         </div>
-
 
                         <button
                             class="remove"
