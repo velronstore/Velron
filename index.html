@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>VELRON</title>
 
+
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 *{
     margin:0;
@@ -165,6 +173,9 @@ body.lock{
 .search-product img{
     width:100%;
     display:block;
+
+    /* CANLI RENK */
+    filter:saturate(1.18) contrast(1.04);
 }
 
 .search-product h3{
@@ -350,8 +361,11 @@ body.lock{
     width:100%;
     display:block;
 
-    /* RENKLERİ BİRAZ DAHA CANLI YAPAR */
-    filter:saturate(1.18) contrast(1.08);
+    /* =========================
+       CANLI ÜRÜN RENKLERİ
+       ========================= */
+
+    filter:saturate(1.20) contrast(1.05);
 }
 
 .product h3{
@@ -436,6 +450,11 @@ body.lock{
     padding-top:50px;
 }
 
+
+/* =========================
+   CART ITEM
+========================= */
+
 .cart-item{
     display:flex;
     gap:8px;
@@ -444,15 +463,33 @@ body.lock{
     margin-bottom:12px;
 }
 
+
+/* =========================
+   SEPET FOTOĞRAFI
+========================= */
+
 .cart-image{
-    width:42px;
-    height:60px;
+
+    /* %5 civarı büyüttük */
+    width:44px;
+    height:63px;
+
     object-fit:contain;
+    object-position:center;
+
     background:#111;
 
-    /* SEPETTEKİ FOTOĞRAFI KOYULAŞTIRIR */
-    filter:brightness(0.62) saturate(1.12) contrast(1.12);
+    display:block;
+
+    flex-shrink:0;
+
+    /* Açık/soluk görüntüyü azalt */
+    filter:
+        saturate(1.18)
+        contrast(1.06)
+        brightness(.90);
 }
+
 
 .cart-info{
     flex:1;
@@ -511,6 +548,11 @@ body.lock{
     font-size:9px;
     cursor:pointer;
 }
+
+
+/* =========================
+   CART FOOTER
+========================= */
 
 .cart-footer{
     flex-shrink:0;
@@ -623,9 +665,15 @@ body.lock{
         font-size:10px;
     }
 
+    .cart-image{
+        width:44px;
+        height:63px;
+    }
+
 }
 
 </style>
+
 </head>
 
 
@@ -637,6 +685,7 @@ body.lock{
 ========================= -->
 
 <header class="header">
+
 
 <button
     class="menu-button"
@@ -658,55 +707,58 @@ body.lock{
 
 <div class="icons">
 
-    <button
-        class="icon"
-        id="searchButton"
-        type="button"
-    >
 
-        <svg viewBox="0 0 24 24">
+<button
+    class="icon"
+    id="searchButton"
+    type="button"
+>
 
-            <circle
-                cx="10.8"
-                cy="10.8"
-                r="6.5"
-            ></circle>
+<svg viewBox="0 0 24 24">
 
-            <line
-                x1="16"
-                y1="16"
-                x2="21"
-                y2="21"
-            ></line>
+<circle
+    cx="10.8"
+    cy="10.8"
+    r="6.5"
+></circle>
 
-        </svg>
+<line
+    x1="16"
+    y1="16"
+    x2="21"
+    y2="21"
+></line>
 
-    </button>
+</svg>
+
+</button>
 
 
-    <button
-        class="icon"
-        id="cartButton"
-        type="button"
-    >
+<button
+    class="icon"
+    id="cartButton"
+    type="button"
+>
 
-        <svg viewBox="0 0 24 24">
+<svg viewBox="0 0 24 24">
 
-            <path
-                d="M5 8h14l-1 12H6L5 8z"
-            ></path>
+<path
+    d="M5 8h14l-1 12H6L5 8z"
+></path>
 
-            <path
-                d="M9 8V6a3 3 0 0 1 6 0v2"
-            ></path>
+<path
+    d="M9 8V6a3 3 0 0 1 6 0v2"
+></path>
 
-        </svg>
+</svg>
 
-    </button>
+</button>
+
 
 </div>
 
 </header>
+
 
 
 <!-- =========================
@@ -755,6 +807,7 @@ body.lock{
 </div>
 
 
+
 <!-- =========================
      MENU
 ========================= -->
@@ -770,6 +823,7 @@ body.lock{
     id="sideMenu"
 >
 
+
 <div
     class="user-name"
     id="userName"
@@ -778,89 +832,86 @@ body.lock{
 
 <div class="menu-section">
 
-    <a
-        href="giris.html"
-        id="loginLink"
-    >
-        Giriş Yap
-    </a>
+
+<!-- KAYDOL KALDIRILDI -->
+
+<a
+    href="giris.html"
+    id="loginLink"
+>
+    Giriş Yap
+</a>
 
 
-    <a
-        href="kayit.html"
-        id="registerLink"
-    >
-        Kaydol
-    </a>
+<a
+    href="hesabim.html"
+    id="accountLink"
+    style="display:none;"
+>
+    Hesabım
+</a>
 
 
-    <a
-        href="hesabim.html"
-        id="accountLink"
-        style="display:none;"
-    >
-        Hesabım
-    </a>
+<a
+    href="siparislerim.html"
+    id="ordersLink"
+    style="display:none;"
+>
+    Siparişlerim
+</a>
 
 
-    <a
-        href="siparislerim.html"
-        id="ordersLink"
-        style="display:none;"
-    >
-        Siparişlerim
-    </a>
+<a
+    href="#"
+    id="logoutLink"
+    style="display:none;"
+>
+    Çıkış Yap
+</a>
 
-
-    <a
-        href="#"
-        id="logoutLink"
-        style="display:none;"
-    >
-        Çıkış Yap
-    </a>
 
 </div>
 
 
 <div class="menu-section">
 
-    <a href="#tisort">
-        Tişört
-    </a>
+<a href="#tisort">
+    Tişört
+</a>
 
-    <a href="#">
-        Şapka
-    </a>
+<a href="#">
+    Şapka
+</a>
 
-    <a href="#">
-        Atkı
-    </a>
+<a href="#">
+    Atkı
+</a>
 
-    <a href="#">
-        Sweatshirt
-    </a>
+<a href="#">
+    Sweatshirt
+</a>
 
 </div>
 
 
 <div>
 
-    <a href="favoriler.html">
-        Favoriler
-    </a>
+<a href="favoriler.html">
+    Favoriler
+</a>
 
-    <a href="#iletisim">
-        İletişim
-    </a>
+<a href="#iletisim">
+    İletişim
+</a>
 
-    <a href="#">
-        Hakkımızda
-    </a>
+<a href="#">
+    Hakkımızda
+</a>
 
 </div>
 
 </nav>
+
 
 
 <!-- =========================
@@ -878,19 +929,20 @@ body.lock{
     id="cart"
 >
 
+
 <div class="cart-head">
 
-    <span>
-        SEPET
-    </span>
+<span>
+    SEPET
+</span>
 
-    <button
-        class="cart-close"
-        id="cartClose"
-        type="button"
-    >
-        ×
-    </button>
+<button
+    class="cart-close"
+    id="cartClose"
+    type="button"
+>
+    ×
+</button>
 
 </div>
 
@@ -903,56 +955,59 @@ body.lock{
 
 <div class="cart-footer">
 
-    <div class="line">
 
-        <span>
-            Ara toplam
-        </span>
+<div class="line">
 
-        <span id="subtotal">
-            0 TL
-        </span>
+<span>
+    Ara toplam
+</span>
 
-    </div>
+<span id="subtotal">
+    0 TL
+</span>
 
-
-    <div class="line">
-
-        <span>
-            Kargo
-        </span>
-
-        <span id="shipping">
-            0 TL
-        </span>
-
-    </div>
+</div>
 
 
-    <div class="total">
+<div class="line">
 
-        <span>
-            TOPLAM
-        </span>
+<span>
+    Kargo
+</span>
 
-        <span id="total">
-            0 TL
-        </span>
+<span id="shipping">
+    0 TL
+</span>
 
-    </div>
+</div>
 
 
-    <button
-        class="checkout"
-        id="checkoutButton"
-        type="button"
-    >
-        SİPARİŞ VER
-    </button>
+<div class="total">
+
+<span>
+    TOPLAM
+</span>
+
+<span id="total">
+    0 TL
+</span>
+
+</div>
+
+
+<button
+    class="checkout"
+    id="checkoutButton"
+    type="button"
+>
+    SİPARİŞ VER
+</button>
+
 
 </div>
 
 </aside>
+
 
 
 <!-- =========================
@@ -961,54 +1016,60 @@ body.lock{
 
 <section class="hero">
 
+
 <div
     class="slider"
     id="slider"
 >
 
-    <img
-        class="slide"
-        src="manken.jpg"
-        alt="VELRON"
-    >
 
-    <img
-        class="slide"
-        src="manken2.png"
-        alt="VELRON"
-    >
+<img
+    class="slide"
+    src="manken.jpg"
+    alt="VELRON"
+>
 
-    <img
-        class="slide"
-        src="manken3.png"
-        alt="VELRON"
-    >
+
+<img
+    class="slide"
+    src="manken2.png"
+    alt="VELRON"
+>
+
+
+<img
+    class="slide"
+    src="manken3.png"
+    alt="VELRON"
+>
+
 
 </div>
 
 
 <div class="hero-text">
 
-    <h1>
-        VELRON
-    </h1>
+<h1>
+    VELRON
+</h1>
 
-    <p>
-        Sıradanlıktan uzak
-    </p>
+<p>
+    Sıradanlıktan uzak
+</p>
 
 </div>
 
 
 <div class="dots">
 
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
+<span class="dot active"></span>
+<span class="dot"></span>
+<span class="dot"></span>
 
 </div>
 
 </section>
+
 
 
 <!-- =========================
@@ -1019,6 +1080,7 @@ body.lock{
     class="products"
     id="tisort"
 >
+
 
 <div class="main-title">
     TİŞÖRT
@@ -1033,93 +1095,96 @@ body.lock{
 <div class="product-scroll">
 
 
-    <div
-        class="product"
-        data-page="urun-detay.html"
-    >
+<div
+    class="product"
+    data-page="urun-detay.html"
+>
 
-        <img
-            src="tiger.png"
-            alt="Tiger Tasarımlı Siyah Tişört"
-        >
+<img
+    src="tiger.png"
+    alt="Tiger Tasarımlı Siyah Tişört"
+>
 
-        <h3>
-            Tiger Tasarımlı Siyah Tişört
-        </h3>
+<h3>
+    Tiger Tasarımlı Siyah Tişört
+</h3>
 
-        <p>
-            499 TL
-        </p>
-
-    </div>
-
-
-    <div
-        class="product"
-        data-page="urun-aslan.html"
-    >
-
-        <img
-            src="aslan.png"
-            alt="Aslan Tasarımlı Siyah Tişört"
-        >
-
-        <h3>
-            Aslan Tasarımlı Siyah Tişört
-        </h3>
-
-        <p>
-            499 TL
-        </p>
-
-    </div>
-
-
-    <div
-        class="product"
-        data-page="urun-darkdevil.html"
-    >
-
-        <img
-            src="darkdevil.png"
-            alt="Dark Devil Tasarımlı Siyah Tişört"
-        >
-
-        <h3>
-            Dark Devil Tasarımlı Siyah Tişört
-        </h3>
-
-        <p>
-            499 TL
-        </p>
-
-    </div>
-
-
-    <div
-        class="product"
-        data-page="urun-kurukafa.html"
-    >
-
-        <img
-            src="kurukafa.png"
-            alt="Kurukafa Tasarımlı Siyah Tişört"
-        >
-
-        <h3>
-            Kurukafa Tasarımlı Siyah Tişört
-        </h3>
-
-        <p>
-            499 TL
-        </p>
-
-    </div>
+<p>
+    499 TL
+</p>
 
 </div>
 
 
+<div
+    class="product"
+    data-page="urun-aslan.html"
+>
+
+<img
+    src="aslan.png"
+    alt="Aslan Tasarımlı Siyah Tişört"
+>
+
+<h3>
+    Aslan Tasarımlı Siyah Tişört
+</h3>
+
+<p>
+    499 TL
+</p>
+
+</div>
+
+
+<div
+    class="product"
+    data-page="urun-darkdevil.html"
+>
+
+<img
+    src="darkdevil.png"
+    alt="Dark Devil Tasarımlı Siyah Tişört"
+>
+
+<h3>
+    Dark Devil Tasarımlı Siyah Tişört
+</h3>
+
+<p>
+    499 TL
+</p>
+
+</div>
+
+
+<div
+    class="product"
+    data-page="urun-kurukafa.html"
+>
+
+<img
+    src="kurukafa.png"
+    alt="Kurukafa Tasarımlı Siyah Tişört"
+>
+
+<h3>
+    Kurukafa Tasarımlı Siyah Tişört
+</h3>
+
+<p>
+    499 TL
+</p>
+
+</div>
+
+
+</div>
+
+
+
 <div class="divider"></div>
+
 
 
 <div class="category-title">
@@ -1130,92 +1195,94 @@ body.lock{
 <div class="product-scroll">
 
 
-    <div
-        class="product"
-        data-page="urun-monza.html"
-    >
+<div
+    class="product"
+    data-page="urun-monza.html"
+>
 
-        <img
-            src="monza.png"
-            alt="Monza Tasarımlı Beyaz Tişört"
-        >
+<img
+    src="monza.png"
+    alt="Monza Tasarımlı Beyaz Tişört"
+>
 
-        <h3>
-            Monza Tasarımlı Beyaz Tişört
-        </h3>
+<h3>
+    Monza Tasarımlı Beyaz Tişört
+</h3>
 
-        <p>
-            499 TL
-        </p>
+<p>
+    499 TL
+</p>
 
-    </div>
-
-
-    <div
-        class="product"
-        data-page="urun-voltage.html"
-    >
-
-        <img
-            src="voltage.png"
-            alt="Voltage Tasarımlı Beyaz Tişört"
-        >
-
-        <h3>
-            Voltage Tasarımlı Beyaz Tişört
-        </h3>
-
-        <p>
-            499 TL
-        </p>
-
-    </div>
+</div>
 
 
-    <div
-        class="product"
-        data-page="urun-porsche.html"
-    >
+<div
+    class="product"
+    data-page="urun-voltage.html"
+>
 
-        <img
-            src="porsche.png"
-            alt="Porsche Tasarımlı Beyaz Tişört"
-        >
+<img
+    src="voltage.png"
+    alt="Voltage Tasarımlı Beyaz Tişört"
+>
 
-        <h3>
-            Porsche Tasarımlı Beyaz Tişört
-        </h3>
+<h3>
+    Voltage Tasarımlı Beyaz Tişört
+</h3>
 
-        <p>
-            499 TL
-        </p>
+<p>
+    499 TL
+</p>
 
-    </div>
+</div>
 
 
-    <div
-        class="product"
-        data-page="urun-velron.html"
-    >
+<div
+    class="product"
+    data-page="urun-porsche.html"
+>
 
-        <img
-            src="velron.png"
-            alt="Velron Tasarımlı Beyaz Tişört"
-        >
+<img
+    src="porsche.png"
+    alt="Porsche Tasarımlı Beyaz Tişört"
+>
 
-        <h3>
-            Velron Tasarımlı Beyaz Tişört
-        </h3>
+<h3>
+    Porsche Tasarımlı Beyaz Tişört
+</h3>
 
-        <p>
-            499 TL
-        </p>
+<p>
+    499 TL
+</p>
 
-    </div>
+</div>
+
+
+<div
+    class="product"
+    data-page="urun-velron.html"
+>
+
+<img
+    src="velron.png"
+    alt="Velron Tasarımlı Beyaz Tişört"
+>
+
+<h3>
+    Velron Tasarımlı Beyaz Tişört
+</h3>
+
+<p>
+    499 TL
+</p>
+
+</div>
+
 
 </div>
 
 </section>
+
 
 
 <!-- =========================
@@ -1224,67 +1291,73 @@ body.lock{
 
 <footer id="iletisim">
 
+
 <div class="footer">
 
-    <div class="footer-column">
 
-        <div class="footer-title">
-            İLETİŞİM
-        </div>
+<div class="footer-column">
 
-        <div class="footer-item">
+<div class="footer-title">
+    İLETİŞİM
+</div>
 
-            <a href="mailto:storevelron@gmail.com">
-                storevelron@gmail.com
-            </a>
+<div class="footer-item">
 
-        </div>
+<a href="mailto:storevelron@gmail.com">
+    storevelron@gmail.com
+</a>
 
-    </div>
+</div>
+
+</div>
 
 
-    <div class="footer-column">
 
-        <div class="footer-title">
-            SOSYAL MEDYA
-        </div>
+<div class="footer-column">
 
-        <div class="footer-item">
+<div class="footer-title">
+    SOSYAL MEDYA
+</div>
 
-            <a
-                href="https://instagram.com/velron_store"
-                target="_blank"
-            >
-                Instagram: velron_store
-            </a>
+<div class="footer-item">
 
-        </div>
+<a
+    href="https://instagram.com/velron_store"
+    target="_blank"
+>
+    Instagram: velron_store
+</a>
 
-        <div class="footer-item">
+</div>
 
-            <a
-                href="https://www.tiktok.com/@velron.store"
-                target="_blank"
-            >
-                TikTok: velron.store
-            </a>
 
-        </div>
+<div class="footer-item">
 
-    </div>
+<a
+    href="https://www.tiktok.com/@velron.store"
+    target="_blank"
+>
+    TikTok: velron.store
+</a>
+
+</div>
+
+</div>
+
 
 </div>
 
 
 <div class="footer-bottom">
 
-    <div class="footer-logo">
-        VELRON
-    </div>
+<div class="footer-logo">
+    VELRON
+</div>
 
 </div>
 
 </footer>
+
 
 
 <!-- =========================
@@ -1292,6 +1365,7 @@ body.lock{
 ========================= -->
 
 <script type="module">
+
 
 import {
     initializeApp
@@ -1311,38 +1385,37 @@ from
 
 const firebaseConfig = {
 
-    apiKey:
-        "AIzaSyD8osmrzNWj32T-1kNx-jmHlWcAm5_7xeg",
+apiKey:
+"AIzaSyD8osmrzNWj32T-1kNx-jmHlWcAm5_7xeg",
 
-    authDomain:
-        "velron-831db.firebaseapp.com",
+authDomain:
+"velron-831db.firebaseapp.com",
 
-    projectId:
-        "velron-831db",
+projectId:
+"velron-831db",
 
-    storageBucket:
-        "velron-831db.firebasestorage.app",
+storageBucket:
+"velron-831db.firebasestorage.app",
 
-    messagingSenderId:
-        "622435814773",
+messagingSenderId:
+"622435814773",
 
-    appId:
-        "1:622435814773:web:bd94aff51e78ba2a7c573c",
+appId:
+"1:622435814773:web:bd94aff51e78ba2a7c573c",
 
-    measurementId:
-        "G-74XHVN6V22"
+measurementId:
+"G-74XHVN6V22"
 
 };
 
 
 const app =
-    initializeApp(
-        firebaseConfig
-    );
+initializeApp(firebaseConfig);
 
 
 const auth =
-    getAuth(app);
+getAuth(app);
+
 
 
 /* =========================
@@ -1350,22 +1423,19 @@ const auth =
 ========================= */
 
 const userName =
-    document.getElementById("userName");
+document.getElementById("userName");
 
 const loginLink =
-    document.getElementById("loginLink");
-
-const registerLink =
-    document.getElementById("registerLink");
+document.getElementById("loginLink");
 
 const accountLink =
-    document.getElementById("accountLink");
+document.getElementById("accountLink");
 
 const ordersLink =
-    document.getElementById("ordersLink");
+document.getElementById("ordersLink");
 
 const logoutLink =
-    document.getElementById("logoutLink");
+document.getElementById("logoutLink");
 
 
 let currentUser = null;
@@ -1388,10 +1458,8 @@ onAuthStateChanged(
             userName.style.display =
                 "block";
 
-            loginLink.style.display =
-                "none";
 
-            registerLink.style.display =
+            loginLink.style.display =
                 "none";
 
             accountLink.style.display =
@@ -1403,15 +1471,13 @@ onAuthStateChanged(
             logoutLink.style.display =
                 "block";
 
+
         }else{
 
             userName.style.display =
                 "none";
 
             loginLink.style.display =
-                "block";
-
-            registerLink.style.display =
                 "block";
 
             accountLink.style.display =
@@ -1427,6 +1493,7 @@ onAuthStateChanged(
 
     }
 );
+
 
 
 /* =========================
@@ -1460,18 +1527,19 @@ logoutLink.addEventListener(
 );
 
 
+
 /* =========================
    MENU
 ========================= */
 
 const menuButton =
-    document.getElementById("menuButton");
+document.getElementById("menuButton");
 
 const sideMenu =
-    document.getElementById("sideMenu");
+document.getElementById("sideMenu");
 
 const menuOverlay =
-    document.getElementById("menuOverlay");
+document.getElementById("menuOverlay");
 
 
 function openMenu(){
@@ -1539,89 +1607,90 @@ document
 );
 
 
+
 /* =========================
    SEARCH
 ========================= */
 
 const searchButton =
-    document.getElementById("searchButton");
+document.getElementById("searchButton");
 
 const searchClose =
-    document.getElementById("searchClose");
+document.getElementById("searchClose");
 
 const search =
-    document.getElementById("search");
+document.getElementById("search");
 
 const searchInput =
-    document.getElementById("searchInput");
+document.getElementById("searchInput");
 
 const searchResults =
-    document.getElementById("searchResults");
+document.getElementById("searchResults");
 
 const searchGrid =
-    document.getElementById("searchGrid");
+document.getElementById("searchGrid");
 
 const searchTitle =
-    document.getElementById("searchTitle");
+document.getElementById("searchTitle");
 
 
 const products = [
 
-    {
-        name:"Tiger Tasarımlı Siyah Tişört",
-        price:499,
-        image:"tiger.png",
-        page:"urun-detay.html"
-    },
+{
+    name:"Tiger Tasarımlı Siyah Tişört",
+    price:499,
+    image:"tiger.png",
+    page:"urun-detay.html"
+},
 
-    {
-        name:"Aslan Tasarımlı Siyah Tişört",
-        price:499,
-        image:"aslan.png",
-        page:"urun-aslan.html"
-    },
+{
+    name:"Aslan Tasarımlı Siyah Tişört",
+    price:499,
+    image:"aslan.png",
+    page:"urun-aslan.html"
+},
 
-    {
-        name:"Dark Devil Tasarımlı Siyah Tişört",
-        price:499,
-        image:"darkdevil.png",
-        page:"urun-darkdevil.html"
-    },
+{
+    name:"Dark Devil Tasarımlı Siyah Tişört",
+    price:499,
+    image:"darkdevil.png",
+    page:"urun-darkdevil.html"
+},
 
-    {
-        name:"Kurukafa Tasarımlı Siyah Tişört",
-        price:499,
-        image:"kurukafa.png",
-        page:"urun-kurukafa.html"
-    },
+{
+    name:"Kurukafa Tasarımlı Siyah Tişört",
+    price:499,
+    image:"kurukafa.png",
+    page:"urun-kurukafa.html"
+},
 
-    {
-        name:"Monza Tasarımlı Beyaz Tişört",
-        price:499,
-        image:"monza.png",
-        page:"urun-monza.html"
-    },
+{
+    name:"Monza Tasarımlı Beyaz Tişört",
+    price:499,
+    image:"monza.png",
+    page:"urun-monza.html"
+},
 
-    {
-        name:"Voltage Tasarımlı Beyaz Tişört",
-        price:499,
-        image:"voltage.png",
-        page:"urun-voltage.html"
-    },
+{
+    name:"Voltage Tasarımlı Beyaz Tişört",
+    price:499,
+    image:"voltage.png",
+    page:"urun-voltage.html"
+},
 
-    {
-        name:"Porsche Tasarımlı Beyaz Tişört",
-        price:499,
-        image:"porsche.png",
-        page:"urun-porsche.html"
-    },
+{
+    name:"Porsche Tasarımlı Beyaz Tişört",
+    price:499,
+    image:"porsche.png",
+    page:"urun-porsche.html"
+},
 
-    {
-        name:"Velron Tasarımlı Beyaz Tişört",
-        price:499,
-        image:"velron.png",
-        page:"urun-velron.html"
-    }
+{
+    name:"Velron Tasarımlı Beyaz Tişört",
+    price:499,
+    image:"velron.png",
+    page:"urun-velron.html"
+}
 
 ];
 
@@ -1769,40 +1838,41 @@ searchInput.addEventListener(
 );
 
 
+
 /* =========================
    CART
 ========================= */
 
 const CART_KEY =
-    "velron_cart";
+"velron_cart";
 
 
 const cartButton =
-    document.getElementById("cartButton");
+document.getElementById("cartButton");
 
 const cartClose =
-    document.getElementById("cartClose");
+document.getElementById("cartClose");
 
 const cart =
-    document.getElementById("cart");
+document.getElementById("cart");
 
 const cartOverlay =
-    document.getElementById("cartOverlay");
+document.getElementById("cartOverlay");
 
 const cartList =
-    document.getElementById("cartList");
+document.getElementById("cartList");
 
 const subtotal =
-    document.getElementById("subtotal");
+document.getElementById("subtotal");
 
 const shipping =
-    document.getElementById("shipping");
+document.getElementById("shipping");
 
 const total =
-    document.getElementById("total");
+document.getElementById("total");
 
 const checkoutButton =
-    document.getElementById("checkoutButton");
+document.getElementById("checkoutButton");
 
 
 function getCart(){
@@ -1879,6 +1949,7 @@ cartOverlay.addEventListener(
 );
 
 
+
 /* =========================
    SHIPPING
 ========================= */
@@ -1920,6 +1991,7 @@ function calculateShipping(
     return 50;
 
 }
+
 
 
 /* =========================
@@ -2129,6 +2201,7 @@ function renderCart(){
 }
 
 
+
 /* =========================
    QUANTITY
 ========================= */
@@ -2178,6 +2251,7 @@ function changeQuantity(
 }
 
 
+
 function removeItem(index){
 
     const items =
@@ -2195,6 +2269,7 @@ function removeItem(index){
     renderCart();
 
 }
+
 
 
 /* =========================
@@ -2239,6 +2314,7 @@ checkoutButton.addEventListener(
 );
 
 
+
 /* =========================
    PRODUCT LINKS
 ========================= */
@@ -2262,15 +2338,16 @@ document
 );
 
 
+
 /* =========================
    SLIDER
 ========================= */
 
 const slider =
-    document.getElementById("slider");
+document.getElementById("slider");
 
 const dots =
-    document.querySelectorAll(".dot");
+document.querySelectorAll(".dot");
 
 
 let currentSlide = 0;
@@ -2290,7 +2367,7 @@ function goToSlide(index){
     slider.style.transform =
         "translateX(-" +
         currentSlide * 100 +
-        "%";
+        "%)";
 
 
     dots.forEach(
@@ -2356,6 +2433,7 @@ function startAutoSlide(){
 startAutoSlide();
 
 
+
 slider.addEventListener(
     "touchstart",
     function(event){
@@ -2373,6 +2451,7 @@ slider.addEventListener(
         passive:true
     }
 );
+
 
 
 slider.addEventListener(
@@ -2439,6 +2518,7 @@ slider.addEventListener(
 );
 
 
+
 dots.forEach(
     function(dot,index){
 
@@ -2457,6 +2537,7 @@ dots.forEach(
 
     }
 );
+
 
 
 /* =========================
@@ -2483,13 +2564,16 @@ document.addEventListener(
 );
 
 
+
 /* =========================
    INITIAL
 ========================= */
 
 renderCart();
 
+
 </script>
 
 </body>
+
 </html>
