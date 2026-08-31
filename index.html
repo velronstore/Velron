@@ -14,47 +14,6 @@ content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>VELRON</title>
 
-<!-- =========================================
-     GÖRSEL YÜKLEME ÖNCELİĞİ
-     Önce mankenler, sonra siyah tişörtler
-========================================= -->
-
-<link rel="preload"
-      as="image"
-      href="manken.jpg"
-      fetchpriority="high">
-
-<link rel="preload"
-      as="image"
-      href="manken2.png"
-      fetchpriority="high">
-
-<link rel="preload"
-      as="image"
-      href="manken3.png"
-      fetchpriority="high">
-
-<link rel="preload"
-      as="image"
-      href="tiger.png"
-      fetchpriority="high">
-
-<link rel="preload"
-      as="image"
-      href="aslan.png"
-      fetchpriority="high">
-
-<link rel="preload"
-      as="image"
-      href="darkdevil.png"
-      fetchpriority="high">
-
-<link rel="preload"
-      as="image"
-      href="kurukafa.png"
-      fetchpriority="high">
-
-
 <style>
 
 /* =========================
@@ -105,11 +64,15 @@ input{
 .header{
     width:100%;
     height:55px;
+
     background:#000;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 15px;
+
     position:relative;
     z-index:100;
 }
@@ -117,12 +80,16 @@ input{
 .menu-button{
     width:25px;
     height:25px;
+
     background:none;
     border:none;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
+
     gap:4px;
+
     cursor:pointer;
 }
 
@@ -136,10 +103,14 @@ input{
     position:absolute;
     left:50%;
     transform:translateX(-50%);
+
     font-family:Georgia,"Times New Roman",serif;
+
     font-size:18px;
     font-weight:bold;
+
     letter-spacing:5px;
+
     color:#fff;
 }
 
@@ -151,17 +122,22 @@ input{
 .icon{
     width:25px;
     height:25px;
+
     background:none;
     border:none;
+
     color:#fff;
+
     cursor:pointer;
 }
 
 .icon svg{
     width:21px;
     height:21px;
+
     stroke:#fff;
     fill:none;
+
     stroke-width:1.4;
 }
 
@@ -172,12 +148,18 @@ input{
 
 .search{
     display:none;
+
     width:100%;
     height:55px;
+
     background:#000;
+
     align-items:center;
+
     padding:0 15px;
+
     gap:10px;
+
     position:relative;
     z-index:110;
 }
@@ -189,18 +171,27 @@ input{
 .search-close{
     background:none;
     border:none;
+
     color:#fff;
+
     font-size:26px;
+
     cursor:pointer;
 }
 
 .search input{
     flex:1;
+
     height:38px;
+
     background:#111;
+
     border:1px solid #333;
+
     color:#fff;
+
     outline:none;
+
     padding:0 12px;
 }
 
@@ -210,7 +201,9 @@ input{
 
 .search-results{
     display:none;
+
     padding:20px 15px 40px;
+
     background:#000;
 }
 
@@ -220,13 +213,17 @@ input{
 
 .search-title{
     color:#888;
+
     font-size:12px;
+
     margin-bottom:15px;
 }
 
 .search-grid{
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
     gap:20px 10px;
 }
 
@@ -240,14 +237,18 @@ input{
 
 .search-product h3{
     color:#fff;
+
     font-size:11px;
     font-weight:500;
+
     margin-top:7px;
 }
 
 .search-product p{
     color:#ccc;
+
     font-size:11px;
+
     margin-top:5px;
 }
 
@@ -258,13 +259,19 @@ input{
 
 .overlay{
     position:fixed;
+
     inset:0;
+
     background:rgba(0,0,0,.5);
+
     backdrop-filter:blur(5px);
     -webkit-backdrop-filter:blur(5px);
+
     opacity:0;
     visibility:hidden;
+
     transition:.25s;
+
     z-index:999;
 }
 
@@ -280,15 +287,23 @@ input{
 
 .side-menu{
     position:fixed;
+
     top:0;
     left:0;
+
     width:40vw;
     height:100dvh;
+
     background:#080808;
+
     transform:translateX(-100%);
+
     transition:.25s ease;
+
     z-index:1000;
+
     padding:70px 20px 30px;
+
     overflow-y:auto;
 }
 
@@ -298,24 +313,34 @@ input{
 
 .user-name{
     display:none;
+
     font-family:Georgia,"Times New Roman",serif;
+
     font-size:16px;
     font-weight:bold;
+
     margin-bottom:25px;
+
     word-break:break-word;
 }
 
 .side-menu a{
     display:block;
+
     color:#fff;
+
     text-decoration:none;
+
     font-size:13px;
+
     padding:10px 0;
 }
 
 .menu-section{
     padding-bottom:18px;
+
     margin-bottom:18px;
+
     border-bottom:1px solid #292929;
 }
 
@@ -326,63 +351,89 @@ input{
 
 .hero{
     position:relative;
+
     width:100%;
+
     overflow:hidden;
+
     touch-action:pan-y;
+
     background:#000;
 }
 
 .slider{
     display:flex;
+
     width:100%;
+
     transition:transform .6s ease;
+
     user-select:none;
 }
 
 .slide{
     flex:0 0 100%;
+
     width:100%;
     height:auto;
+
     display:block;
+
     pointer-events:none;
+
     object-fit:cover;
 }
 
 .hero-text{
     position:absolute;
+
     left:6%;
     top:50%;
+
     transform:translateY(-50%);
+
     pointer-events:none;
 }
 
 .hero-text h1{
     font-family:"Trebuchet MS",Arial,sans-serif;
+
     font-size:27px;
+
     font-style:italic;
+
     letter-spacing:6px;
 }
 
 .hero-text p{
     font-size:11px;
+
     margin-top:8px;
+
     letter-spacing:1px;
 }
 
 .dots{
     position:absolute;
+
     bottom:13px;
     left:50%;
+
     transform:translateX(-50%);
+
     display:flex;
+
     gap:5px;
 }
 
 .dot{
     width:5px;
     height:5px;
+
     border-radius:50%;
+
     background:#fff;
+
     opacity:.35;
 }
 
@@ -397,27 +448,37 @@ input{
 
 .products{
     padding:28px 15px 45px;
+
     background:#000;
 }
 
 .main-title{
     color:#fff;
+
     font-size:22px;
+
     font-weight:800;
 }
 
 .category-title{
     color:#fff;
+
     font-size:15px;
+
     margin:14px 0;
+
     margin-left:8px;
 }
 
 .product-scroll{
     display:flex;
+
     gap:10px;
+
     overflow-x:auto;
+
     scrollbar-width:none;
+
     -webkit-overflow-scrolling:touch;
 }
 
@@ -427,12 +488,15 @@ input{
 
 .product{
     flex:0 0 37%;
+
     min-width:0;
+
     cursor:pointer;
 }
 
 .product img{
     width:100%;
+
     filter:
         saturate(1.20)
         contrast(1.05);
@@ -440,22 +504,31 @@ input{
 
 .product h3{
     color:#fff;
+
     font-size:11px;
+
     font-weight:500;
+
     line-height:1.35;
+
     margin-top:7px;
 }
 
 .product p{
     text-align:center;
+
     font-size:11px;
+
     color:#ddd;
+
     margin-top:5px;
 }
 
 .divider{
     height:1px;
+
     background:#444;
+
     margin:12px 0;
 }
 
@@ -466,19 +539,31 @@ input{
 
 .cart{
     position:fixed;
+
     top:0;
     right:0;
+
     width:40vw;
+
     min-width:300px;
     max-width:430px;
+
     height:100dvh;
+
     background:#080808;
+
     transform:translateX(100%);
+
     transition:.3s ease;
+
     z-index:2000;
+
     display:grid;
+
     grid-template-rows:58px minmax(0,1fr) auto;
+
     overflow:hidden;
+
     padding-bottom:env(safe-area-inset-bottom);
 }
 
@@ -489,25 +574,36 @@ input{
 .cart-head{
     height:58px;
     min-height:58px;
+
     border-bottom:1px solid #292929;
+
     display:flex;
+
     align-items:center;
     justify-content:space-between;
+
     padding:0 17px;
 }
 
 .cart-head span{
     color:#fff;
+
     font-size:13px;
+
     font-weight:bold;
+
     letter-spacing:1px;
 }
 
 .cart-close{
     border:none;
+
     background:none;
+
     color:#fff;
+
     font-size:25px;
+
     cursor:pointer;
 }
 
@@ -518,16 +614,22 @@ input{
 
 .cart-list{
     min-height:0;
+
     overflow-y:auto;
     overflow-x:hidden;
+
     padding:12px;
+
     -webkit-overflow-scrolling:touch;
 }
 
 .empty{
     text-align:center;
+
     color:#777;
+
     font-size:12px;
+
     padding-top:50px;
 }
 
@@ -538,21 +640,31 @@ input{
 
 .cart-item{
     display:flex;
+
     gap:8px;
+
     min-width:0;
+
     border-bottom:1px solid #252525;
+
     padding-bottom:12px;
+
     margin-bottom:12px;
 }
 
 .cart-image{
     width:44px;
     height:63px;
+
     object-fit:contain;
     object-position:center;
+
     background:#111;
+
     display:block;
+
     flex-shrink:0;
+
     filter:
         saturate(1.18)
         contrast(1.06)
@@ -561,61 +673,84 @@ input{
 
 .cart-info{
     flex:1;
+
     min-width:0;
 }
 
 .cart-name{
     color:#fff;
+
     font-size:10px;
+
     line-height:1.35;
 }
 
 .cart-size{
     color:#888;
+
     font-size:9px;
+
     margin-top:4px;
 }
 
 .cart-price{
     color:#ddd;
+
     font-size:10px;
+
     margin-top:4px;
 }
 
 .cart-bottom{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-top:7px;
 }
 
 .quantity{
     display:flex;
+
     border:1px solid #333;
 }
 
 .quantity button{
     width:21px;
     height:21px;
+
     border:none;
+
     background:#111;
+
     color:#fff;
+
     cursor:pointer;
 }
 
 .quantity span{
     width:22px;
+
     text-align:center;
+
     line-height:21px;
+
     font-size:9px;
+
     color:#fff;
 }
 
 .remove{
     border:none;
+
     background:none;
+
     color:#777;
+
     font-size:9px;
+
     cursor:pointer;
 }
 
@@ -626,22 +761,32 @@ input{
 
 .cart-footer{
     width:100%;
+
     border-top:1px solid #292929;
+
     padding:
         13px
         13px
         calc(13px + env(safe-area-inset-bottom));
+
     background:#080808;
+
     position:relative;
+
     z-index:10;
 }
 
 .line{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     font-size:10px;
+
     margin-bottom:8px;
+
     color:#fff;
 }
 
@@ -655,12 +800,19 @@ input{
 
 .total{
     border-top:1px solid #292929;
+
     padding-top:10px;
+
     margin-top:5px;
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     font-size:12px;
+
     font-weight:bold;
 }
 
@@ -675,19 +827,33 @@ input{
 
 .checkout{
     width:100%;
+
     height:42px;
+
     margin-top:12px;
+
     border:none;
+
     background:#fff;
+
     color:#000;
+
     font-size:10px;
+
     font-weight:bold;
+
     letter-spacing:1px;
+
     cursor:pointer;
+
     display:block;
+
     visibility:visible;
+
     opacity:1;
+
     position:relative;
+
     z-index:20;
 }
 
@@ -698,9 +864,13 @@ input{
 
 .footer{
     border-top:1px solid #222;
+
     padding:35px 25px 25px;
+
     display:flex;
+
     justify-content:space-between;
+
     background:#000;
 }
 
@@ -710,33 +880,45 @@ input{
 
 .footer-title{
     color:#fff;
+
     font-size:12px;
+
     font-weight:bold;
+
     letter-spacing:1px;
+
     margin-bottom:12px;
 }
 
 .footer-item{
     color:#aaa;
+
     font-size:11px;
+
     line-height:1.8;
 }
 
 .footer-item a{
     color:#aaa;
+
     text-decoration:none;
 }
 
 .footer-bottom{
     text-align:center;
+
     padding:0 20px 25px;
+
     background:#000;
 }
 
 .footer-logo{
     color:#555;
+
     font-family:Georgia,"Times New Roman",serif;
+
     font-size:11px;
+
     letter-spacing:4px;
 }
 
@@ -749,12 +931,15 @@ input{
 
     .side-menu{
         width:40vw;
+
         padding:65px 13px 25px;
     }
 
     .cart{
         width:40vw;
+
         min-width:0;
+
         max-width:none;
     }
 
@@ -1156,7 +1341,7 @@ input{
     class="slide"
     src="manken2.png"
     alt="VELRON"
-    fetchpriority="high"
+    loading="lazy"
     decoding="async"
 >
 
@@ -1165,7 +1350,7 @@ input{
     class="slide"
     src="manken3.png"
     alt="VELRON"
-    fetchpriority="high"
+    loading="lazy"
     decoding="async"
 >
 
@@ -1218,11 +1403,7 @@ input{
 <div class="product-scroll">
 
 
-<!-- =========================
-     SİYAH ÜRÜNLER
-     Öncelikli yükleme
-========================= -->
-
+<!-- TIGER -->
 
 <div
     class="product"
@@ -1232,6 +1413,7 @@ input{
 <img
     src="tiger.png"
     alt="Tiger Tasarımlı Siyah Tişört"
+    loading="eager"
     fetchpriority="high"
     decoding="async"
 >
@@ -1247,6 +1429,33 @@ input{
 </div>
 
 
+<!-- ÇİZGİLİ KAPLAN -->
+
+<div
+    class="product"
+    data-page="tiger-cizgili.html"
+>
+
+<img
+    src="tiger-cizgili.png"
+    alt="Çizgili Kaplan Tasarımlı Siyah Tişört"
+    loading="lazy"
+    decoding="async"
+>
+
+<h3>
+    Çizgili Kaplan Tasarımlı Siyah Tişört
+</h3>
+
+<p>
+    499 TL
+</p>
+
+</div>
+
+
+<!-- ASLAN -->
+
 <div
     class="product"
     data-page="urun-aslan.html"
@@ -1255,7 +1464,7 @@ input{
 <img
     src="aslan.png"
     alt="Aslan Tasarımlı Siyah Tişört"
-    fetchpriority="high"
+    loading="lazy"
     decoding="async"
 >
 
@@ -1270,6 +1479,8 @@ input{
 </div>
 
 
+<!-- DARK DEVIL -->
+
 <div
     class="product"
     data-page="urun-darkdevil.html"
@@ -1278,7 +1489,7 @@ input{
 <img
     src="darkdevil.png"
     alt="Dark Devil Tasarımlı Siyah Tişört"
-    fetchpriority="high"
+    loading="lazy"
     decoding="async"
 >
 
@@ -1293,6 +1504,8 @@ input{
 </div>
 
 
+<!-- KURUKAFA -->
+
 <div
     class="product"
     data-page="urun-kurukafa.html"
@@ -1301,7 +1514,7 @@ input{
 <img
     src="kurukafa.png"
     alt="Kurukafa Tasarımlı Siyah Tişört"
-    fetchpriority="high"
+    loading="lazy"
     decoding="async"
 >
 
@@ -1321,11 +1534,6 @@ input{
 <div class="divider"></div>
 
 
-<!-- =========================
-     BEYAZ ÜRÜNLER
-     Lazy yükleme
-========================= -->
-
 <div class="category-title">
     Beyaz
 </div>
@@ -1333,6 +1541,8 @@ input{
 
 <div class="product-scroll">
 
+
+<!-- MONZA -->
 
 <div
     class="product"
@@ -1357,6 +1567,8 @@ input{
 </div>
 
 
+<!-- VOLTAGE -->
+
 <div
     class="product"
     data-page="urun-voltage.html"
@@ -1380,6 +1592,8 @@ input{
 </div>
 
 
+<!-- PORSCHE -->
+
 <div
     class="product"
     data-page="urun-porsche.html"
@@ -1402,6 +1616,8 @@ input{
 
 </div>
 
+
+<!-- VELRON -->
 
 <div
     class="product"
@@ -1767,6 +1983,10 @@ const searchTitle =
 document.getElementById("searchTitle");
 
 
+/* =========================
+   ÜRÜNLER
+========================= */
+
 const products = [
 
     {
@@ -1774,6 +1994,13 @@ const products = [
         price:499,
         image:"tiger.png",
         page:"urun-detay.html"
+    },
+
+    {
+        name:"Çizgili Kaplan Tasarımlı Siyah Tişört",
+        price:499,
+        image:"tiger-cizgili.png",
+        page:"tiger-cizgili.html"
     },
 
     {
@@ -2698,4 +2925,4 @@ renderCart();
 
 </body>
 
-     </html>
+</html>
