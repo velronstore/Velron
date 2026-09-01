@@ -346,7 +346,7 @@ input{
 
 
 /* =========================
-   HERO
+   HERO / MANKEN SLIDER
 ========================= */
 
 .hero{
@@ -369,6 +369,8 @@ input{
     transition:transform .6s ease;
 
     user-select:none;
+
+    -webkit-user-select:none;
 }
 
 .slide{
@@ -379,9 +381,15 @@ input{
 
     display:block;
 
-    pointer-events:none;
+    pointer-events:auto;
 
     object-fit:cover;
+
+    cursor:pointer;
+
+    touch-action:pan-y;
+
+    -webkit-user-drag:none;
 }
 
 .hero-text{
@@ -435,6 +443,8 @@ input{
     background:#fff;
 
     opacity:.35;
+
+    cursor:pointer;
 }
 
 .dot.active{
@@ -822,7 +832,7 @@ input{
 
 
 /* =========================
-   SİPARİŞ VER
+   CHECKOUT
 ========================= */
 
 .checkout{
@@ -1004,9 +1014,11 @@ input{
     type="button"
     aria-label="Menü"
 >
-    <span></span>
-    <span></span>
-    <span></span>
+
+<span></span>
+<span></span>
+<span></span>
+
 </button>
 
 
@@ -1331,7 +1343,8 @@ input{
 <img
     class="slide"
     src="manken.jpg"
-    alt="VELRON"
+    alt="Çizgili Kaplan Tasarımlı Siyah Tişört"
+    data-page="tiger-cizgili.html"
     fetchpriority="high"
     decoding="async"
 >
@@ -1340,7 +1353,8 @@ input{
 <img
     class="slide"
     src="manken2.png"
-    alt="VELRON"
+    alt="Monza Tasarımlı Beyaz Tişört"
+    data-page="urun-monza.html"
     loading="lazy"
     decoding="async"
 >
@@ -1349,7 +1363,8 @@ input{
 <img
     class="slide"
     src="manken3.png"
-    alt="VELRON"
+    alt="Çizgili Kaplan Tasarımlı Beyaz Tişört"
+    data-page="tiger-cizgili2.html"
     loading="lazy"
     decoding="async"
 >
@@ -1429,7 +1444,7 @@ input{
 </div>
 
 
-<!-- ÇİZGİLİ KAPLAN -->
+<!-- ÇİZGİLİ KAPLAN SİYAH -->
 
 <div
     class="product"
@@ -1640,6 +1655,32 @@ input{
 </p>
 
 </div>
+
+
+<!-- ÇİZGİLİ KAPLAN BEYAZ -->
+
+<div
+    class="product"
+    data-page="tiger-cizgili2.html"
+>
+
+<img
+    src="tiger-cizgili2.png"
+    alt="Çizgili Kaplan Tasarımlı Beyaz Tişört"
+    loading="lazy"
+    decoding="async"
+>
+
+<h3>
+    Çizgili Kaplan Tasarımlı Beyaz Tişört
+</h3>
+
+<p>
+    499 TL
+</p>
+
+</div>
+
 
 </div>
 
@@ -2050,6 +2091,13 @@ const products = [
         price:499,
         image:"velron.png",
         page:"urun-velron.html"
+    },
+
+    {
+        name:"Çizgili Kaplan Tasarımlı Beyaz Tişört",
+        price:499,
+        image:"tiger-cizgili2.png",
+        page:"tiger-cizgili2.html"
     }
 
 ];
@@ -2678,14 +2726,14 @@ checkoutButton.addEventListener(
 document
 .querySelectorAll(".product")
 .forEach(
-    function(product){
+    function(productElement){
 
-        product.addEventListener(
+        productElement.addEventListener(
             "click",
             function(){
 
                 window.location.href =
-                    product.dataset.page;
+                    productElement.dataset.page;
 
             }
         );
@@ -2709,10 +2757,18 @@ let currentSlide = 0;
 
 let touchStartX = 0;
 
+let touchStartY = 0;
+
 let touchEndX = 0;
+
+let touchMoved = false;
 
 let autoSlideTimer;
 
+
+/* =========================
+   SLIDE
+========================= */
 
 function goToSlide(index){
 
@@ -2769,6 +2825,27 @@ function nextSlide(){
 }
 
 
+function previousSlide(){
+
+    currentSlide--;
+
+
+    if(
+        currentSlide < 0
+    ){
+
+        currentSlide = 2;
+
+    }
+
+
+    goToSlide(
+        currentSlide
+    );
+
+}
+
+
 function startAutoSlide(){
 
     clearInterval(
@@ -2788,6 +2865,10 @@ function startAutoSlide(){
 startAutoSlide();
 
 
+/* =========================
+   TOUCH SWIPE
+========================= */
+
 slider.addEventListener(
     "touchstart",
     function(event){
@@ -2795,10 +2876,52 @@ slider.addEventListener(
         touchStartX =
             event.touches[0].clientX;
 
+        touchStartY =
+            event.touches[0].clientY;
+
+        touchMoved = false;
 
         clearInterval(
             autoSlideTimer
         );
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+slider.addEventListener(
+    "touchmove",
+    function(event){
+
+        const currentX =
+            event.touches[0].clientX;
+
+        const currentY =
+            event.touches[0].clientY;
+
+
+        const differenceX =
+            currentX -
+            touchStartX;
+
+
+        const differenceY =
+            currentY -
+            touchStartY;
+
+
+        if(
+            Math.abs(differenceX) > 10 &&
+            Math.abs(differenceX) >
+            Math.abs(differenceY)
+        ){
+
+            touchMoved = true;
+
+        }
 
     },
     {
@@ -2828,36 +2951,13 @@ slider.addEventListener(
                 difference > 0
             ){
 
-                currentSlide++;
-
-
-                if(
-                    currentSlide >= 3
-                ){
-
-                    currentSlide = 0;
-
-                }
+                nextSlide();
 
             }else{
 
-                currentSlide--;
-
-
-                if(
-                    currentSlide < 0
-                ){
-
-                    currentSlide = 2;
-
-                }
+                previousSlide();
 
             }
-
-
-            goToSlide(
-                currentSlide
-            );
 
         }
 
@@ -2871,12 +2971,56 @@ slider.addEventListener(
 );
 
 
+/* =========================
+   MANKENE TIKLAMA
+========================= */
+
+slider
+.querySelectorAll(".slide")
+.forEach(
+    function(slide){
+
+        slide.addEventListener(
+            "click",
+            function(){
+
+                if(touchMoved){
+
+                    return;
+
+                }
+
+
+                const page =
+                    slide.dataset.page;
+
+
+                if(page){
+
+                    window.location.href =
+                        page;
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================
+   DOTS
+========================= */
+
 dots.forEach(
     function(dot,index){
 
         dot.addEventListener(
             "click",
-            function(){
+            function(event){
+
+                event.stopPropagation();
 
                 goToSlide(
                     index
